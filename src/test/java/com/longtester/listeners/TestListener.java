@@ -1,5 +1,6 @@
 package com.longtester.listeners;
 
+import com.longtester.helpers.CaptureHelper;
 import com.longtester.helpers.PropertiesHelper;
 import com.longtester.mail.EmailSender;
 import com.longtester.utils.LogUtils;

@@ -17,6 +17,6 @@ public class ProjectTest extends BaseTest {
         loginPage.loginHRM(PropertiesHelper.getValue("ADMIN_USERNAME"), PropertiesHelper.getValue("ADMIN_PASSWORD"));
         basePage.clickMenuProject();
         projectPage.addNewProject(title, client, startDate, endDate, summary);
-        projectPage.getTotalProjectsNotStarted();
+        projectPage.verifyAddProjectSuccess();
     }
 }

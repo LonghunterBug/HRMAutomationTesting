@@ -32,7 +32,7 @@ public class WebUI {
             throw new RuntimeException(e);
         }
     }
-    public void
+
 
     public static void logConsole(Object message) {
         LogUtils.info(message);
