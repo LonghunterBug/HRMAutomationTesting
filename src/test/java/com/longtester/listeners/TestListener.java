@@ -50,6 +50,7 @@ public class TestListener implements ITestListener {
         LogUtils.error("❌ Test case: " + iTestResult.getMethod().getMethodName() + " is failed.");
         LogUtils.error("📄 Reason: " + iTestResult.getThrowable());
         count_failedTCs++;
+        CaptureHelper.takeScreenshotBrowser(iTestResult.getMethod().getMethodName());
     }
 
     @Override

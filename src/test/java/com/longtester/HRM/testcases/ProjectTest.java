@@ -17,6 +17,42 @@ public class ProjectTest extends BaseTest {
         loginPage.loginHRM(PropertiesHelper.getValue("ADMIN_USERNAME"), PropertiesHelper.getValue("ADMIN_PASSWORD"));
         basePage.clickMenuProject();
         projectPage.addNewProject(title, client, startDate, endDate, summary);
-        projectPage.verifyAddProjectSuccess();
+        projectPage.verifyAddProjectSuccess(title, client, startDate, endDate, summary);
+    }
+
+    @Test(dataProvider = "data_editProject", dataProviderClass = DataProviderFactory.class)
+    public void testEditProject(String title, String client, String startDate, String endDate, String summary, String update_endDate) {
+        LoginPage loginPage = new LoginPage();
+        BasePage basePage = new BasePage();
+        ProjectPage projectPage = new ProjectPage();
+        loginPage.loginHRM(PropertiesHelper.getValue("ADMIN_USERNAME"), PropertiesHelper.getValue("ADMIN_PASSWORD"));
+        basePage.clickMenuProject();
+        projectPage.addNewProject(title, client, startDate, endDate, summary);
+        projectPage.editProject(title, update_endDate);
+        projectPage.verifyDetailProjectAfterUpdate(update_endDate);
+    }
+
+    @Test(dataProvider = "data_deleteProject", dataProviderClass = DataProviderFactory.class)
+    public void testDeleteProject(String title, String client, String startDate, String endDate, String summary) {
+        LoginPage loginPage = new LoginPage();
+        BasePage basePage = new BasePage();
+        ProjectPage projectPage = new ProjectPage();
+        loginPage.loginHRM(PropertiesHelper.getValue("ADMIN_USERNAME"), PropertiesHelper.getValue("ADMIN_PASSWORD"));
+        basePage.clickMenuProject();
+        projectPage.addNewProject(title, client, startDate, endDate, summary);
+        projectPage.deleteProject(title);
+        projectPage.verifyProjectNotDisplayedAfterDelete(title);
+    }
+
+    @Test(dataProvider = "data_editStatusProject", dataProviderClass = DataProviderFactory.class)
+    public void testEditStatusProject(String title, String client, String startDate, String endDate, String summary, String status, String priority) {
+        LoginPage loginPage = new LoginPage();
+        BasePage basePage = new BasePage();
+        ProjectPage projectPage = new ProjectPage();
+        loginPage.loginHRM(PropertiesHelper.getValue("ADMIN_USERNAME"), PropertiesHelper.getValue("ADMIN_PASSWORD"));
+        basePage.clickMenuProject();
+        projectPage.addNewProject(title, client, startDate, endDate, summary);
+        projectPage.editStatus(title, status, priority);
+        projectPage.verifyStatusProjectAfterUpdate(status, priority);
     }
 }

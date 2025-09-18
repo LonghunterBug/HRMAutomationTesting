@@ -41,6 +41,10 @@ public class WebUI {
         DriverManager.getDriver().navigate().refresh();
         logConsole("Reload page: " + DriverManager.getDriver().getTitle());
     }
+    public static void backToPreviousPage(){
+        DriverManager.getDriver().navigate().back();
+        logConsole("Back to previous page: " + DriverManager.getDriver().getTitle());
+    }
 
     public static String getCurrentURL() {
         String currentURL = DriverManager.getDriver().getCurrentUrl();

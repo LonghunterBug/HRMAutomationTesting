@@ -34,7 +34,7 @@ public class DataProviderFactory {
     @DataProvider(name = "data_AddNewClient")
     public Object[][] dataAddNewClient() {
         ExcelHelper excelHelper = new ExcelHelper();
-        Object[][] clientdata = excelHelper.getExcelData(data_path, "Client", "TC01");
+        Object[][] clientdata = excelHelper.getExcelData(data_path, "Client", "TC05");
         Object[][] result = new Object[clientdata.length][8];
         for (int i = 0; i < clientdata.length; i++) {
             result[i][0] = clientdata[i][0]; //firstName
@@ -75,7 +75,50 @@ public class DataProviderFactory {
     public Object[][] dataAddNewProject() {
         ExcelHelper excelHelper = new ExcelHelper();
         Object[][] projectdata = excelHelper.getExcelData(data_path, "Project", "TC01");
+        Object[][] result = new Object[projectdata.length][5];
+        for (int i = 0; i < projectdata.length; i++) {
+            result[i][0] = projectdata[i][0]; //title
+            result[i][1] = projectdata[i][1]; //client
+            result[i][2] = projectdata[i][2]; //startDate
+            result[i][3] = projectdata[i][3]; //endDate
+            result[i][4] = projectdata[i][4]; //summary
+        }
+        return result;
+    }
+    @DataProvider(name = "data_editProject")
+    public Object[][] dataEditProject() {
+        ExcelHelper excelHelper = new ExcelHelper();
+        Object[][] projectdata = excelHelper.getExcelData(data_path, "Project", "TC02");
         return projectdata;
     }
-
+    @DataProvider(name = "data_deleteProject")
+    public Object[][] dataDeleteProject() {
+        ExcelHelper excelHelper = new ExcelHelper();
+        Object[][] projectdata = excelHelper.getExcelData(data_path, "Project", "TC03");
+        Object[][] result = new Object[projectdata.length][5];
+        for (int i = 0; i < projectdata.length; i++) {
+            result[i][0] = projectdata[i][0]; //title
+            result[i][1] = projectdata[i][1]; //client
+            result[i][2] = projectdata[i][2]; //startDate
+            result[i][3] = projectdata[i][3]; //endDate
+            result[i][4] = projectdata[i][4]; //summary
+        }
+        return result;
+    }
+    @DataProvider(name = "data_editStatusProject")
+    public Object[][] dataEditStatusProject() {
+        ExcelHelper excelHelper = new ExcelHelper();
+        Object[][] projectdata = excelHelper.getExcelData(data_path, "Project", "TC04");
+        Object[][] result = new Object[projectdata.length][7];
+        for (int i = 0; i < projectdata.length; i++) {
+            result[i][0] = projectdata[i][0]; //title
+            result[i][1] = projectdata[i][1]; //client
+            result[i][2] = projectdata[i][2]; //startDate
+            result[i][3] = projectdata[i][3]; //endDate
+            result[i][4] = projectdata[i][4]; //summary
+            result[i][5] = projectdata[i][6]; //status
+            result[i][6] = projectdata[i][7]; //priority
+        }
+        return result;
+    }
 }

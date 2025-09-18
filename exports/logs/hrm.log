@@ -1,0 +1,224 @@
+[INFO] 18-09-2025 20:22:47 [main] LogUtils - ********** RUN STARTED **********
+[INFO] 18-09-2025 20:22:49 [main] LogUtils - Test case: testAddNewClient is starting...
+[INFO] 18-09-2025 20:22:51 [main] LogUtils - 🌐 Open URL: https://hrm.anhtester.com/erp/login
+[INFO] 18-09-2025 20:22:51 [main] LogUtils - Set text admin_example on element By.xpath: //input[@id='iusername']
+[INFO] 18-09-2025 20:22:52 [main] LogUtils - Set text 123456 on element By.xpath: //input[@id='ipassword']
+[INFO] 18-09-2025 20:22:52 [main] LogUtils - Click on element By.xpath: //button[normalize-space()='Login']
+[INFO] 18-09-2025 20:22:57 [main] LogUtils - Click on element By.xpath: //li/a[contains(@href,'clients')]
+[INFO] 18-09-2025 20:22:57 [main] LogUtils - Click on element By.xpath: //a[normalize-space()='Add New']
+[INFO] 18-09-2025 20:22:58 [main] LogUtils - Set text Billy on element By.xpath: //input[@placeholder='First Name']
+[INFO] 18-09-2025 20:22:58 [main] LogUtils - Set text Billy on element By.xpath: //input[@placeholder='Last Name']
+[INFO] 18-09-2025 20:22:58 [main] LogUtils - Set text Billy$2024 on element By.xpath: //input[@placeholder='Password']
+[INFO] 18-09-2025 20:22:58 [main] LogUtils - Set text 0912345679 on element By.xpath: //input[@placeholder='Contact Number']
+[INFO] 18-09-2025 20:22:58 [main] LogUtils - Click on element By.xpath: //label[normalize-space()='Gender']/following::span[contains(@id,'gender')]
+[INFO] 18-09-2025 20:22:58 [main] LogUtils - Click on element By.xpath: //li[normalize-space()='Male']
+[INFO] 18-09-2025 20:22:59 [main] LogUtils - Set text billy.billy@test.com on element By.xpath: //input[@placeholder='Email']
+[INFO] 18-09-2025 20:22:59 [main] LogUtils - Set text billy on element By.xpath: //input[@placeholder='Username']
+[INFO] 18-09-2025 20:22:59 [main] LogUtils - Upload file: D:\Selenium_Workspace\HRMAutomationTesting\src/test/resources/testdata/test.jpg on element By.xpath: //input[@name='file']
+[INFO] 18-09-2025 20:22:59 [main] LogUtils - Click on element By.xpath: //span[normalize-space()='Save']/parent::button
+[INFO] 18-09-2025 20:23:09 [main] LogUtils - Timeout waiting for the element Visible. By.xpath: //div[contains(@class,'toast-success')]
+[ERROR] 18-09-2025 20:23:09 [main] LogUtils - ❌ Test case: testAddNewClient is failed.
+[ERROR] 18-09-2025 20:23:09 [main] LogUtils - 📄 Reason: java.lang.AssertionError: Timeout waiting for the element Visible. By.xpath: //div[contains(@class,'toast-success')]
+[INFO] 18-09-2025 20:23:09 [main] LogUtils - ********** RUN FINISHED **********
+[INFO] 18-09-2025 20:23:09 [main] LogUtils - 📊 Test Summary:
+[INFO] 18-09-2025 20:23:09 [main] LogUtils - ✅ Total TCs: 1
+[INFO] 18-09-2025 20:23:09 [main] LogUtils - ✅ Passed TCs: 0
+[INFO] 18-09-2025 20:23:09 [main] LogUtils - ❌ Failed TCs: 1
+[INFO] 18-09-2025 20:23:09 [main] LogUtils - ⚠ Skipped TCs: 0
+[INFO] 18-09-2025 20:31:22 [main] LogUtils - ********** RUN STARTED **********
+[INFO] 18-09-2025 20:31:25 [main] LogUtils - Test case: testEditStatusProject is starting...
+[INFO] 18-09-2025 20:31:28 [main] LogUtils - 🌐 Open URL: https://hrm.anhtester.com/erp/login
+[INFO] 18-09-2025 20:31:28 [main] LogUtils - Set text admin_example on element By.xpath: //input[@id='iusername']
+[INFO] 18-09-2025 20:31:28 [main] LogUtils - Set text 123456 on element By.xpath: //input[@id='ipassword']
+[INFO] 18-09-2025 20:31:28 [main] LogUtils - Click on element By.xpath: //button[normalize-space()='Login']
+[INFO] 18-09-2025 20:31:34 [main] LogUtils - Click on element By.xpath: //li/a[contains(@href,'projects')]
+[INFO] 18-09-2025 20:31:34 [main] LogUtils - Click on element By.xpath: //a[normalize-space()='Add New']
+[INFO] 18-09-2025 20:31:34 [main] LogUtils - Set text This is auto test4 on element By.xpath: //input[@placeholder='Title']
+[INFO] 18-09-2025 20:31:34 [main] LogUtils - Click on element By.xpath: //label[@for='client_id']/following::span[contains(@id,'client')]
+[INFO] 18-09-2025 20:31:35 [main] LogUtils - Set text Long Tran on element By.xpath: //input[@type='search' and @role='searchbox' and contains(@aria-activedescendant,'client')]
+[INFO] 18-09-2025 20:31:35 [main] LogUtils - Click on element By.xpath: //li[normalize-space()='Long Tran']
+[INFO] 18-09-2025 20:31:35 [main] LogUtils - Click on element By.xpath: //input[@placeholder='Start Date']
+[INFO] 18-09-2025 20:31:35 [main] LogUtils - Select month: OCT
+[INFO] 18-09-2025 20:31:35 [main] LogUtils - Select year: 2028
+[INFO] 18-09-2025 20:31:36 [main] LogUtils - Select date: 05
+[INFO] 18-09-2025 20:31:36 [main] LogUtils - Click on element By.xpath: //div[@class='dtp animated fadeIn']//div[@class='dtp-buttons']/button[text()='OK']
+[INFO] 18-09-2025 20:31:36 [main] LogUtils - Click on element By.xpath: //input[@placeholder='End Date']
+[INFO] 18-09-2025 20:31:36 [main] LogUtils - Select month: DEC
+[INFO] 18-09-2025 20:31:36 [main] LogUtils - Select year: 2028
+[INFO] 18-09-2025 20:31:37 [main] LogUtils - Select date: 20
+[INFO] 18-09-2025 20:31:37 [main] LogUtils - Click on element By.xpath: //div[@class='dtp animated fadeIn']//div[@class='dtp-buttons']/button[text()='OK']
+[INFO] 18-09-2025 20:31:37 [main] LogUtils - Set text Run auto test on element By.xpath: //textarea[@id='summary']
+[INFO] 18-09-2025 20:31:37 [main] LogUtils - Click on element By.xpath: //span[normalize-space()='Save']/parent::button
+[INFO] 18-09-2025 20:31:37 [main] LogUtils - Reload page: Projects | HRM | Anh Tester Demo
+[INFO] 18-09-2025 20:31:37 [main] LogUtils - Get text of element By.xpath: //span[normalize-space()='Completed']/ancestor::div/h2
+[INFO] 18-09-2025 20:31:37 [main] LogUtils - ==> TEXT: 4
+[INFO] 18-09-2025 20:31:37 [main] LogUtils - Get text of element By.xpath: //span[normalize-space()='In Progress']/ancestor::div/h2
+[INFO] 18-09-2025 20:31:37 [main] LogUtils - ==> TEXT: 2
+[INFO] 18-09-2025 20:31:37 [main] LogUtils - Get text of element By.xpath: //span[normalize-space()='On Hold']/ancestor::div/h2
+[INFO] 18-09-2025 20:31:37 [main] LogUtils - ==> TEXT: 3
+[INFO] 18-09-2025 20:31:37 [main] LogUtils - Get text of element By.xpath: //span[normalize-space()='Not Started']/ancestor::div/h2
+[INFO] 18-09-2025 20:31:37 [main] LogUtils - ==> TEXT: 104
+[INFO] 18-09-2025 20:31:38 [main] LogUtils - Set text This is auto test4 on element By.xpath: //input[@type='search' and  contains(@class,'form-control')]
+[INFO] 18-09-2025 20:31:39 [main] LogUtils - Hover mouse on element By.xpath: //tbody/tr[@role='row']
+[INFO] 18-09-2025 20:31:39 [main] LogUtils - Click on element By.xpath: //button/parent::a[contains(@href,'project-detail')]
+[INFO] 18-09-2025 20:31:50 [main] LogUtils - Timeout waiting for the element ready to click. By.xpath: //a[normalize-space(text())='09-09-2029']
+[ERROR] 18-09-2025 20:31:50 [main] LogUtils - ❌ Test case: testEditStatusProject is failed.
+[ERROR] 18-09-2025 20:31:50 [main] LogUtils - 📄 Reason: java.lang.AssertionError: Timeout waiting for the element ready to click. By.xpath: //a[normalize-space(text())='09-09-2029']
+[INFO] 18-09-2025 20:31:50 [main] LogUtils - ********** RUN FINISHED **********
+[INFO] 18-09-2025 20:31:50 [main] LogUtils - 📊 Test Summary:
+[INFO] 18-09-2025 20:31:50 [main] LogUtils - ✅ Total TCs: 1
+[INFO] 18-09-2025 20:31:50 [main] LogUtils - ✅ Passed TCs: 0
+[INFO] 18-09-2025 20:31:50 [main] LogUtils - ❌ Failed TCs: 1
+[INFO] 18-09-2025 20:31:50 [main] LogUtils - ⚠ Skipped TCs: 0
+[INFO] 18-09-2025 20:34:04 [main] LogUtils - ********** RUN STARTED **********
+[INFO] 18-09-2025 20:34:06 [main] LogUtils - Test case: testEditStatusProject is starting...
+[INFO] 18-09-2025 20:34:08 [main] LogUtils - 🌐 Open URL: https://hrm.anhtester.com/erp/login
+[INFO] 18-09-2025 20:34:08 [main] LogUtils - Set text admin_example on element By.xpath: //input[@id='iusername']
+[INFO] 18-09-2025 20:34:08 [main] LogUtils - Set text 123456 on element By.xpath: //input[@id='ipassword']
+[INFO] 18-09-2025 20:34:08 [main] LogUtils - Click on element By.xpath: //button[normalize-space()='Login']
+[INFO] 18-09-2025 20:34:14 [main] LogUtils - Click on element By.xpath: //li/a[contains(@href,'projects')]
+[INFO] 18-09-2025 20:34:14 [main] LogUtils - Click on element By.xpath: //a[normalize-space()='Add New']
+[INFO] 18-09-2025 20:34:14 [main] LogUtils - Set text This is auto test4 on element By.xpath: //input[@placeholder='Title']
+[INFO] 18-09-2025 20:34:14 [main] LogUtils - Click on element By.xpath: //label[@for='client_id']/following::span[contains(@id,'client')]
+[INFO] 18-09-2025 20:34:14 [main] LogUtils - Set text Long Tran on element By.xpath: //input[@type='search' and @role='searchbox' and contains(@aria-activedescendant,'client')]
+[INFO] 18-09-2025 20:34:14 [main] LogUtils - Click on element By.xpath: //li[normalize-space()='Long Tran']
+[INFO] 18-09-2025 20:34:15 [main] LogUtils - Click on element By.xpath: //input[@placeholder='Start Date']
+[INFO] 18-09-2025 20:34:15 [main] LogUtils - Select month: OCT
+[INFO] 18-09-2025 20:34:15 [main] LogUtils - Select year: 2028
+[INFO] 18-09-2025 20:34:15 [main] LogUtils - Select date: 05
+[INFO] 18-09-2025 20:34:15 [main] LogUtils - Click on element By.xpath: //div[@class='dtp animated fadeIn']//div[@class='dtp-buttons']/button[text()='OK']
+[INFO] 18-09-2025 20:34:15 [main] LogUtils - Click on element By.xpath: //input[@placeholder='End Date']
+[INFO] 18-09-2025 20:34:15 [main] LogUtils - Select month: DEC
+[INFO] 18-09-2025 20:34:16 [main] LogUtils - Select year: 2028
+[INFO] 18-09-2025 20:34:16 [main] LogUtils - Select date: 20
+[INFO] 18-09-2025 20:34:16 [main] LogUtils - Click on element By.xpath: //div[@class='dtp animated fadeIn']//div[@class='dtp-buttons']/button[text()='OK']
+[INFO] 18-09-2025 20:34:16 [main] LogUtils - Set text Run auto test on element By.xpath: //textarea[@id='summary']
+[INFO] 18-09-2025 20:34:17 [main] LogUtils - Click on element By.xpath: //span[normalize-space()='Save']/parent::button
+[INFO] 18-09-2025 20:34:17 [main] LogUtils - Reload page: Projects | HRM | Anh Tester Demo
+[INFO] 18-09-2025 20:34:17 [main] LogUtils - Get text of element By.xpath: //span[normalize-space()='Completed']/ancestor::div/h2
+[INFO] 18-09-2025 20:34:17 [main] LogUtils - ==> TEXT: 4
+[INFO] 18-09-2025 20:34:17 [main] LogUtils - Get text of element By.xpath: //span[normalize-space()='In Progress']/ancestor::div/h2
+[INFO] 18-09-2025 20:34:17 [main] LogUtils - ==> TEXT: 2
+[INFO] 18-09-2025 20:34:17 [main] LogUtils - Get text of element By.xpath: //span[normalize-space()='On Hold']/ancestor::div/h2
+[INFO] 18-09-2025 20:34:17 [main] LogUtils - ==> TEXT: 3
+[INFO] 18-09-2025 20:34:17 [main] LogUtils - Get text of element By.xpath: //span[normalize-space()='Not Started']/ancestor::div/h2
+[INFO] 18-09-2025 20:34:17 [main] LogUtils - ==> TEXT: 103
+[INFO] 18-09-2025 20:34:17 [main] LogUtils - Set text This is auto test4 on element By.xpath: //input[@type='search' and  contains(@class,'form-control')]
+[INFO] 18-09-2025 20:34:19 [main] LogUtils - Hover mouse on element By.xpath: //tbody/tr[@role='row']
+[INFO] 18-09-2025 20:34:19 [main] LogUtils - Click on element By.xpath: //button/parent::a[contains(@href,'project-detail')]
+[INFO] 18-09-2025 20:34:29 [main] LogUtils - Timeout waiting for the element ready to click. By.xpath: //a[normalize-space(text())='In Progress']
+[ERROR] 18-09-2025 20:34:29 [main] LogUtils - ❌ Test case: testEditStatusProject is failed.
+[ERROR] 18-09-2025 20:34:29 [main] LogUtils - 📄 Reason: java.lang.AssertionError: Timeout waiting for the element ready to click. By.xpath: //a[normalize-space(text())='In Progress']
+[INFO] 18-09-2025 20:34:30 [main] LogUtils - ********** RUN FINISHED **********
+[INFO] 18-09-2025 20:34:30 [main] LogUtils - 📊 Test Summary:
+[INFO] 18-09-2025 20:34:30 [main] LogUtils - ✅ Total TCs: 1
+[INFO] 18-09-2025 20:34:30 [main] LogUtils - ✅ Passed TCs: 0
+[INFO] 18-09-2025 20:34:30 [main] LogUtils - ❌ Failed TCs: 1
+[INFO] 18-09-2025 20:34:30 [main] LogUtils - ⚠ Skipped TCs: 0
+[INFO] 18-09-2025 20:37:38 [main] LogUtils - ********** RUN STARTED **********
+[INFO] 18-09-2025 20:37:40 [main] LogUtils - Test case: testEditStatusProject is starting...
+[INFO] 18-09-2025 20:37:42 [main] LogUtils - 🌐 Open URL: https://hrm.anhtester.com/erp/login
+[INFO] 18-09-2025 20:37:42 [main] LogUtils - Set text admin_example on element By.xpath: //input[@id='iusername']
+[INFO] 18-09-2025 20:37:42 [main] LogUtils - Set text 123456 on element By.xpath: //input[@id='ipassword']
+[INFO] 18-09-2025 20:37:42 [main] LogUtils - Click on element By.xpath: //button[normalize-space()='Login']
+[INFO] 18-09-2025 20:37:48 [main] LogUtils - Click on element By.xpath: //li/a[contains(@href,'projects')]
+[INFO] 18-09-2025 20:37:48 [main] LogUtils - Click on element By.xpath: //a[normalize-space()='Add New']
+[INFO] 18-09-2025 20:37:48 [main] LogUtils - Set text This is auto test4 on element By.xpath: //input[@placeholder='Title']
+[INFO] 18-09-2025 20:37:48 [main] LogUtils - Click on element By.xpath: //label[@for='client_id']/following::span[contains(@id,'client')]
+[INFO] 18-09-2025 20:37:48 [main] LogUtils - Set text Long Tran on element By.xpath: //input[@type='search' and @role='searchbox' and contains(@aria-activedescendant,'client')]
+[INFO] 18-09-2025 20:37:48 [main] LogUtils - Click on element By.xpath: //li[normalize-space()='Long Tran']
+[INFO] 18-09-2025 20:37:48 [main] LogUtils - Click on element By.xpath: //input[@placeholder='Start Date']
+[INFO] 18-09-2025 20:37:48 [main] LogUtils - Select month: OCT
+[INFO] 18-09-2025 20:37:49 [main] LogUtils - Select year: 2028
+[INFO] 18-09-2025 20:37:49 [main] LogUtils - Select date: 05
+[INFO] 18-09-2025 20:37:49 [main] LogUtils - Click on element By.xpath: //div[@class='dtp animated fadeIn']//div[@class='dtp-buttons']/button[text()='OK']
+[INFO] 18-09-2025 20:37:49 [main] LogUtils - Click on element By.xpath: //input[@placeholder='End Date']
+[INFO] 18-09-2025 20:37:49 [main] LogUtils - Select month: DEC
+[INFO] 18-09-2025 20:37:49 [main] LogUtils - Select year: 2028
+[INFO] 18-09-2025 20:37:50 [main] LogUtils - Select date: 20
+[INFO] 18-09-2025 20:37:50 [main] LogUtils - Click on element By.xpath: //div[@class='dtp animated fadeIn']//div[@class='dtp-buttons']/button[text()='OK']
+[INFO] 18-09-2025 20:37:50 [main] LogUtils - Set text Run auto test on element By.xpath: //textarea[@id='summary']
+[INFO] 18-09-2025 20:37:50 [main] LogUtils - Click on element By.xpath: //span[normalize-space()='Save']/parent::button
+[INFO] 18-09-2025 20:37:51 [main] LogUtils - Reload page: Projects | HRM | Anh Tester Demo
+[INFO] 18-09-2025 20:37:51 [main] LogUtils - Get text of element By.xpath: //span[normalize-space()='Completed']/ancestor::div/h2
+[INFO] 18-09-2025 20:37:51 [main] LogUtils - ==> TEXT: 4
+[INFO] 18-09-2025 20:37:51 [main] LogUtils - Get text of element By.xpath: //span[normalize-space()='In Progress']/ancestor::div/h2
+[INFO] 18-09-2025 20:37:51 [main] LogUtils - ==> TEXT: 2
+[INFO] 18-09-2025 20:37:51 [main] LogUtils - Get text of element By.xpath: //span[normalize-space()='On Hold']/ancestor::div/h2
+[INFO] 18-09-2025 20:37:51 [main] LogUtils - ==> TEXT: 3
+[INFO] 18-09-2025 20:37:51 [main] LogUtils - Get text of element By.xpath: //span[normalize-space()='Not Started']/ancestor::div/h2
+[INFO] 18-09-2025 20:37:51 [main] LogUtils - ==> TEXT: 103
+[INFO] 18-09-2025 20:37:51 [main] LogUtils - Set text This is auto test4 on element By.xpath: //input[@type='search' and  contains(@class,'form-control')]
+[INFO] 18-09-2025 20:37:52 [main] LogUtils - Hover mouse on element By.xpath: //tbody/tr[@role='row']
+[INFO] 18-09-2025 20:37:53 [main] LogUtils - Click on element By.xpath: //button/parent::a[contains(@href,'project-detail')]
+[INFO] 18-09-2025 20:37:53 [main] LogUtils - Click on element By.xpath: //a[normalize-space(@data-rating-text)='In Progress']
+[INFO] 18-09-2025 20:38:03 [main] LogUtils - Timeout waiting for the element ready to click. By.xpath: //span[@id='select2-priority-gr-container']
+[ERROR] 18-09-2025 20:38:03 [main] LogUtils - ❌ Test case: testEditStatusProject is failed.
+[ERROR] 18-09-2025 20:38:03 [main] LogUtils - 📄 Reason: java.lang.AssertionError: Timeout waiting for the element ready to click. By.xpath: //span[@id='select2-priority-gr-container']
+[INFO] 18-09-2025 20:38:03 [main] LogUtils - ********** RUN FINISHED **********
+[INFO] 18-09-2025 20:38:03 [main] LogUtils - 📊 Test Summary:
+[INFO] 18-09-2025 20:38:03 [main] LogUtils - ✅ Total TCs: 1
+[INFO] 18-09-2025 20:38:03 [main] LogUtils - ✅ Passed TCs: 0
+[INFO] 18-09-2025 20:38:03 [main] LogUtils - ❌ Failed TCs: 1
+[INFO] 18-09-2025 20:38:03 [main] LogUtils - ⚠ Skipped TCs: 0
+[INFO] 18-09-2025 20:56:03 [main] LogUtils - ********** RUN STARTED **********
+[INFO] 18-09-2025 20:56:06 [main] LogUtils - Test case: testEditStatusProject is starting...
+[INFO] 18-09-2025 20:56:08 [main] LogUtils - 🌐 Open URL: https://hrm.anhtester.com/erp/login
+[INFO] 18-09-2025 20:56:08 [main] LogUtils - Set text admin_example on element By.xpath: //input[@id='iusername']
+[INFO] 18-09-2025 20:56:08 [main] LogUtils - Set text 123456 on element By.xpath: //input[@id='ipassword']
+[INFO] 18-09-2025 20:56:08 [main] LogUtils - Click on element By.xpath: //button[normalize-space()='Login']
+[INFO] 18-09-2025 20:56:13 [main] LogUtils - Click on element By.xpath: //li/a[contains(@href,'projects')]
+[INFO] 18-09-2025 20:56:14 [main] LogUtils - Click on element By.xpath: //a[normalize-space()='Add New']
+[INFO] 18-09-2025 20:56:14 [main] LogUtils - Set text This is auto test4 on element By.xpath: //input[@placeholder='Title']
+[INFO] 18-09-2025 20:56:14 [main] LogUtils - Click on element By.xpath: //label[@for='client_id']/following::span[contains(@id,'client')]
+[INFO] 18-09-2025 20:56:14 [main] LogUtils - Set text Long Tran on element By.xpath: //input[@type='search' and @role='searchbox' and contains(@aria-activedescendant,'client')]
+[INFO] 18-09-2025 20:56:14 [main] LogUtils - Click on element By.xpath: //li[normalize-space()='Long Tran']
+[INFO] 18-09-2025 20:56:14 [main] LogUtils - Click on element By.xpath: //input[@placeholder='Start Date']
+[INFO] 18-09-2025 20:56:14 [main] LogUtils - Select month: OCT
+[INFO] 18-09-2025 20:56:15 [main] LogUtils - Select year: 2028
+[INFO] 18-09-2025 20:56:15 [main] LogUtils - Select date: 05
+[INFO] 18-09-2025 20:56:15 [main] LogUtils - Click on element By.xpath: //div[@class='dtp animated fadeIn']//div[@class='dtp-buttons']/button[text()='OK']
+[INFO] 18-09-2025 20:56:15 [main] LogUtils - Click on element By.xpath: //input[@placeholder='End Date']
+[INFO] 18-09-2025 20:56:15 [main] LogUtils - Select month: DEC
+[INFO] 18-09-2025 20:56:15 [main] LogUtils - Select year: 2028
+[INFO] 18-09-2025 20:56:16 [main] LogUtils - Select date: 20
+[INFO] 18-09-2025 20:56:16 [main] LogUtils - Click on element By.xpath: //div[@class='dtp animated fadeIn']//div[@class='dtp-buttons']/button[text()='OK']
+[INFO] 18-09-2025 20:56:16 [main] LogUtils - Set text Run auto test on element By.xpath: //textarea[@id='summary']
+[INFO] 18-09-2025 20:56:16 [main] LogUtils - Click on element By.xpath: //span[normalize-space()='Save']/parent::button
+[INFO] 18-09-2025 20:56:17 [main] LogUtils - Reload page: Projects | HRM | Anh Tester Demo
+[INFO] 18-09-2025 20:56:17 [main] LogUtils - Get text of element By.xpath: //span[normalize-space()='Completed']/ancestor::div/h2
+[INFO] 18-09-2025 20:56:17 [main] LogUtils - ==> TEXT: 4
+[INFO] 18-09-2025 20:56:17 [main] LogUtils - Get text of element By.xpath: //span[normalize-space()='In Progress']/ancestor::div/h2
+[INFO] 18-09-2025 20:56:17 [main] LogUtils - ==> TEXT: 2
+[INFO] 18-09-2025 20:56:17 [main] LogUtils - Get text of element By.xpath: //span[normalize-space()='On Hold']/ancestor::div/h2
+[INFO] 18-09-2025 20:56:17 [main] LogUtils - ==> TEXT: 3
+[INFO] 18-09-2025 20:56:17 [main] LogUtils - Get text of element By.xpath: //span[normalize-space()='Not Started']/ancestor::div/h2
+[INFO] 18-09-2025 20:56:17 [main] LogUtils - ==> TEXT: 103
+[INFO] 18-09-2025 20:56:18 [main] LogUtils - Set text This is auto test4 on element By.xpath: //input[@type='search' and  contains(@class,'form-control')]
+[INFO] 18-09-2025 20:56:19 [main] LogUtils - Hover mouse on element By.xpath: //tbody/tr[@role='row']
+[INFO] 18-09-2025 20:56:19 [main] LogUtils - Click on element By.xpath: //button/parent::a[contains(@href,'project-detail')]
+[INFO] 18-09-2025 20:56:20 [main] LogUtils - Click on element By.xpath: //a[normalize-space(@data-rating-text)='In Progress']
+[INFO] 18-09-2025 20:56:20 [main] LogUtils - Click on element By.xpath: //select[@name='priority']/following-sibling::span
+[INFO] 18-09-2025 20:56:20 [main] LogUtils - Click on element By.xpath: //ul/li[normalize-space()='Low']
+[INFO] 18-09-2025 20:56:20 [main] LogUtils - Click on element By.xpath: //span[normalize-space()='Update Status']/parent::button
+[INFO] 18-09-2025 20:56:20 [main] LogUtils - Reload page: Project Details | HRM | Anh Tester Demo
+[INFO] 18-09-2025 20:56:20 [main] LogUtils - Get text of element By.xpath: //div[@class='br-current-rating' and normalize-space()='In Progress']
+[INFO] 18-09-2025 20:56:20 [main] LogUtils - ==> TEXT: In Progress
+[INFO] 18-09-2025 20:56:20 [main] LogUtils - Get text of element By.xpath: //select[@name='priority']/following-sibling::span
+[INFO] 18-09-2025 20:56:20 [main] LogUtils - ==> TEXT: Low
+[INFO] 18-09-2025 20:56:20 [main] LogUtils - Verify equal: In Progress 🟰 In Progress
+[INFO] 18-09-2025 20:56:20 [main] LogUtils - Verify equal: Low 🟰 Low
+[INFO] 18-09-2025 20:56:21 [main] LogUtils - Back to previous page: Projects | HRM | Anh Tester Demo
+[INFO] 18-09-2025 20:56:21 [main] LogUtils - Get text of element By.xpath: //span[normalize-space()='In Progress']/ancestor::div/h2
+[INFO] 18-09-2025 20:56:21 [main] LogUtils - ==> TEXT: 3
+[INFO] 18-09-2025 20:56:21 [main] LogUtils - Get text of element By.xpath: //span[normalize-space()='Not Started']/ancestor::div/h2
+[INFO] 18-09-2025 20:56:21 [main] LogUtils - ==> TEXT: 102
+[INFO] 18-09-2025 20:56:21 [main] LogUtils - Verify equal: 3 🟰 3
+[INFO] 18-09-2025 20:56:21 [main] LogUtils - Verify equal: 102 🟰 102
+[INFO] 18-09-2025 20:56:21 [main] LogUtils - ✅ Test case: testEditStatusProject is passed.
+[INFO] 18-09-2025 20:56:21 [main] LogUtils - ********** RUN FINISHED **********
+[INFO] 18-09-2025 20:56:21 [main] LogUtils - 📊 Test Summary:
+[INFO] 18-09-2025 20:56:21 [main] LogUtils - ✅ Total TCs: 1
+[INFO] 18-09-2025 20:56:21 [main] LogUtils - ✅ Passed TCs: 1
+[INFO] 18-09-2025 20:56:21 [main] LogUtils - ❌ Failed TCs: 0
+[INFO] 18-09-2025 20:56:21 [main] LogUtils - ⚠ Skipped TCs: 0
