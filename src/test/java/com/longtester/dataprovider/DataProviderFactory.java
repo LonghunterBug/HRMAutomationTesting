@@ -109,7 +109,7 @@ public class DataProviderFactory {
     public Object[][] dataEditStatusProject() {
         ExcelHelper excelHelper = new ExcelHelper();
         Object[][] projectdata = excelHelper.getExcelData(data_path, "Project", "TC04");
-        Object[][] result = new Object[projectdata.length][7];
+        Object[][] result = new Object[projectdata.length][8];
         for (int i = 0; i < projectdata.length; i++) {
             result[i][0] = projectdata[i][0]; //title
             result[i][1] = projectdata[i][1]; //client
@@ -118,6 +118,7 @@ public class DataProviderFactory {
             result[i][4] = projectdata[i][4]; //summary
             result[i][5] = projectdata[i][6]; //status
             result[i][6] = projectdata[i][7]; //priority
+            result[i][7] = projectdata[i][8]; //progress
         }
         return result;
     }

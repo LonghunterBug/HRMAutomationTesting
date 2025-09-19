@@ -6,6 +6,7 @@ import com.longtester.keywords.WebUI;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -48,6 +49,7 @@ public class ProjectPage {
     By textStartDate = By.xpath("//div[@id='pills-overview']//tr[5]/td[2]");
     By textEndDate = By.xpath("//div[@id='pills-overview']//tr[6]/td[2]");
     By textSummary = By.xpath("//div[@id='pills-overview']//div[3]");
+    By sliderValue = By.xpath("//span[@class='irs-single']");
     By selectPriority = By.xpath("//select[@name='priority']/following-sibling::span");
     By buttonUpdateStatus = By.xpath("//span[normalize-space()='Update Status']/parent::button");
 
@@ -171,7 +173,7 @@ public class ProjectPage {
         WebUI.clickElement(buttonUpdateProject);
     }
 
-    public void editStatus(String title, String status, String priority) {
+    public void editStatus(String title, String progress, String status, String priority) {
         WebUI.refreshPage();
         TotalProjectCompletedBefore = getTotalProjectsCompleted();
         TotalProjectInProgressBefore = getTotalProjectsInProgress();
@@ -180,6 +182,8 @@ public class ProjectPage {
         searchTitle(title);
         clickViewDetail();
         WebUI.waitForElementVisible(buttonUpdateStatus);
+        WebElement sliderline = DriverManager.getDriver().findElement(By.xpath("//input[@id='progres_val']"));
+        WebUI.setValueToSlider(sliderline, progress);
         WebUI.clickElement(By.xpath("//a[normalize-space(@data-rating-text)='" + status + "']"));
         WebUI.clickElement(selectPriority);
         WebUI.clickElement(By.xpath("//ul/li[normalize-space()='" + priority + "']"));
@@ -246,10 +250,12 @@ public class ProjectPage {
         WebUI.softVerifyEqual(actual_TotalProjectsNotStarted,expect_TotalProjectsNotStarted,"Total project notstarted not match with expected");
     }
 
-    public void verifyStatusProjectAfterUpdate(String status,String priority) {
+    public void verifyStatusProjectAfterUpdate(String status,String priority, String progress) {
         WebUI.refreshPage();
         String actual_status = WebUI.getElementText(By.xpath("//div[@class='br-current-rating' and normalize-space()='" + status + "']"));
         String actual_priority = WebUI.getElementText(selectPriority);
+        String actual_progress = WebUI.getElementText(sliderValue);
+        WebUI.softVerifyEqual(actual_progress,progress,"Progress not match with expected");
         WebUI.softVerifyEqual(actual_status,status,"Status not match with expected");
         WebUI.softVerifyEqual(actual_priority,priority,"Priority not match with expected");
         WebUI.backToPreviousPage();

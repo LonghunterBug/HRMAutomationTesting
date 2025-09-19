@@ -45,14 +45,14 @@ public class ProjectTest extends BaseTest {
     }
 
     @Test(dataProvider = "data_editStatusProject", dataProviderClass = DataProviderFactory.class)
-    public void testEditStatusProject(String title, String client, String startDate, String endDate, String summary, String status, String priority) {
+    public void testEditStatusProject(String title, String client, String startDate, String endDate, String summary, String status, String priority,String progress) {
         LoginPage loginPage = new LoginPage();
         BasePage basePage = new BasePage();
         ProjectPage projectPage = new ProjectPage();
         loginPage.loginHRM(PropertiesHelper.getValue("ADMIN_USERNAME"), PropertiesHelper.getValue("ADMIN_PASSWORD"));
         basePage.clickMenuProject();
         projectPage.addNewProject(title, client, startDate, endDate, summary);
-        projectPage.editStatus(title, status, priority);
-        projectPage.verifyStatusProjectAfterUpdate(status, priority);
+        projectPage.editStatus(title, progress, status, priority);
+        projectPage.verifyStatusProjectAfterUpdate(status, priority,progress);
     }
 }

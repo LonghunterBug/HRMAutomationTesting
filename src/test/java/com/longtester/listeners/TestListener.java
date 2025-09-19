@@ -43,6 +43,7 @@ public class TestListener implements ITestListener {
     public void onTestSuccess(ITestResult iTestResult) {
         LogUtils.info("✅ Test case: " + iTestResult.getMethod().getMethodName() + " is passed.");
         count_passedTCs++;
+        CaptureHelper.takeScreenshotBrowser(iTestResult.getMethod().getMethodName());
     }
 
     @Override
@@ -50,7 +51,6 @@ public class TestListener implements ITestListener {
         LogUtils.error("❌ Test case: " + iTestResult.getMethod().getMethodName() + " is failed.");
         LogUtils.error("📄 Reason: " + iTestResult.getThrowable());
         count_failedTCs++;
-        CaptureHelper.takeScreenshotBrowser(iTestResult.getMethod().getMethodName());
     }
 
     @Override

@@ -33,7 +33,6 @@ public class WebUI {
         }
     }
 
-
     public static void logConsole(Object message) {
         LogUtils.info(message);
     }
@@ -181,6 +180,11 @@ public class WebUI {
             logConsole("Error hovering mouse on element " + by + ": " + e.getMessage());
             Assert.fail("Error hovering mouse on element " + by + ": " + e.getMessage());
         }
+    }
+    public static void setValueToSlider(WebElement element, String value){
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
+        js.executeScript("arguments[0].value='" + Integer.parseInt(value) + "';", element);
+        logConsole("Set slider to value: " + value);
     }
 
     public static boolean isElementDisplayed(By by) {
