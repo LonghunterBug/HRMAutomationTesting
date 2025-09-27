@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 public class BasePage {
     By menuProject = By.xpath("//li/a[contains(@href,'projects')]");
     By menuClient = By.xpath("//li/a[contains(@href,'clients')]");
+    By menuTask = By.xpath("//li/a[contains(@href,'tasks')]/span[normalize-space()='Tasks']");
     By buttonLogout = By.xpath("//div[normalize-space()='Logout']/a");
     By menuHome = By.xpath("//li/a[contains(@href,'desk')]");
 
@@ -17,6 +18,10 @@ public class BasePage {
         WebUI.waitForElementVisible(menuClient);
         WebUI.scrollToElementAtTop(menuClient);
         WebUI.clickElement(menuClient);
+    }
+    public void clickMenuTask(){
+        WebUI.waitForElementVisible(menuTask);
+        WebUI.clickElement(menuTask);
     }
     public void verifyUserNavigateToHome(){
         WebUI.verifyDisplay(menuHome,WebUI.isElementDisplayed(menuHome),"Menu Home not display");

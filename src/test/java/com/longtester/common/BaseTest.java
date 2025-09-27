@@ -2,6 +2,8 @@ package com.longtester.common;
 
 import com.longtester.driver.DriverManager;
 import com.longtester.helpers.PropertiesHelper;
+import com.longtester.helpers.SoftAssertHelper;
+import com.longtester.keywords.WebUI;
 import com.longtester.listeners.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -65,11 +67,13 @@ public class BaseTest {
         }
         DriverManager.setDriver(driver);
         DriverManager.getDriver().manage().window().maximize();
+        // Reset SoftAssert trước mỗi test
+        SoftAssertHelper.resetSoftAssert();
     }
     @AfterMethod
     public void tearDown(){
-        if(DriverManager.getDriver()!=null){
-            DriverManager.getDriver().quit();
+        if (DriverManager.getDriver() != null) {
+                DriverManager.getDriver().quit();  // luôn đóng driver
+            }
         }
-    }
 }

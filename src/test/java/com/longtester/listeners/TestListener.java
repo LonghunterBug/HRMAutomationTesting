@@ -43,13 +43,13 @@ public class TestListener implements ITestListener {
     public void onTestSuccess(ITestResult iTestResult) {
         LogUtils.info("✅ Test case: " + iTestResult.getMethod().getMethodName() + " is passed.");
         count_passedTCs++;
-        CaptureHelper.takeScreenshotBrowser(iTestResult.getMethod().getMethodName());
     }
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
         LogUtils.error("❌ Test case: " + iTestResult.getMethod().getMethodName() + " is failed.");
         LogUtils.error("📄 Reason: " + iTestResult.getThrowable());
+        CaptureHelper.takeScreenshotBrowser(iTestResult.getMethod().getMethodName());
         count_failedTCs++;
     }
 

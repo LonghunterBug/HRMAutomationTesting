@@ -2,6 +2,7 @@ package com.longtester.keywords;
 
 import com.longtester.driver.DriverManager;
 import com.longtester.helpers.PropertiesHelper;
+import com.longtester.helpers.SoftAssertHelper;
 import com.longtester.utils.LogUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -12,17 +13,16 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import java.net.URL;
 import java.time.Duration;
 import java.util.List;
 
 public class WebUI {
     private static WebDriver driver;
-    private static SoftAssert softAssert = new SoftAssert();
 
     private static int TIMEOUT = Integer.parseInt(PropertiesHelper.getValue("WAIT_EXPLICIT"));
     private static double STEP_TIME = Double.parseDouble(PropertiesHelper.getValue("SLEEP_TIME"));
     private static int PAGE_LOAD_TIMEOUT = 30;
+
 
 
     public static void sleep(double second) {
@@ -36,11 +36,14 @@ public class WebUI {
     public static void logConsole(Object message) {
         LogUtils.info(message);
     }
-    public static void refreshPage(){
+
+    public static void refreshPage() {
         DriverManager.getDriver().navigate().refresh();
-        logConsole("Reload page: " + DriverManager.getDriver().getTitle());
+        DriverManager.getDriver().navigate().refresh();
+        logConsole("Refresh page: " + DriverManager.getDriver().getTitle());
     }
-    public static void backToPreviousPage(){
+
+    public static void backToPreviousPage() {
         DriverManager.getDriver().navigate().back();
         logConsole("Back to previous page: " + DriverManager.getDriver().getTitle());
     }
@@ -80,6 +83,7 @@ public class WebUI {
         getWebElement(by).sendKeys(value);
         logConsole("Set text " + value + " on element " + by);
     }
+
     public static void uploadFile(By by, String filePath) {
         sleep(STEP_TIME);
         getWebElement(by).sendKeys(filePath);
@@ -181,7 +185,8 @@ public class WebUI {
             Assert.fail("Error hovering mouse on element " + by + ": " + e.getMessage());
         }
     }
-    public static void setValueToSlider(WebElement element, String value){
+
+    public static void setValueToSlider(WebElement element, String value) {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
         js.executeScript("arguments[0].value='" + Integer.parseInt(value) + "';", element);
         logConsole("Set slider to value: " + value);
@@ -280,9 +285,10 @@ public class WebUI {
         Assert.assertTrue(check, message);
         logConsole("Verify " + text + " is checked");
     }
+
     public static void softVerifySelect(By by, boolean check, String message) {
         String text = getWebElement(by).getText();
-        softAssert.assertTrue(check, message);
+        SoftAssertHelper.getSoftAssert().assertTrue(check, message);
         logConsole("Verify " + text + " is checked");
     }
 
@@ -290,8 +296,9 @@ public class WebUI {
         Assert.assertEquals(actual, expected, message);
         logConsole("Verify equal: " + actual + " \uD83D\uDFF0 " + expected);
     }
+
     public static void softVerifyEqual(Object actual, Object expected, String message) {
-        softAssert.assertEquals(actual, expected, message);
+        SoftAssertHelper.getSoftAssert().assertEquals(actual, expected, message);
         logConsole("Verify equal: " + actual + " \uD83D\uDFF0 " + expected);
     }
 
@@ -315,7 +322,8 @@ public class WebUI {
 
 
     public static void assertAll() {
-        softAssert.assertAll();
+        SoftAssertHelper.getSoftAssert().assertAll();
+        SoftAssertHelper.resetSoftAssert();
     }
 
 
