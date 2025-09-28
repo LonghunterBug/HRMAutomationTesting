@@ -9,6 +9,7 @@ import com.longtester.helpers.PropertiesHelper;
 import org.testng.annotations.Test;
 
 public class ClientTest extends BaseTest {
+
     @Test(dataProvider = "data_AddNewClient", dataProviderClass = DataProviderFactory.class)
     public void testAddNewClient(String firstName, String lastName, String password, String contactNumber,
                                  String gender, String email, String username, String filepath) {

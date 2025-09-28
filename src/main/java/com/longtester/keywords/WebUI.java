@@ -1,9 +1,13 @@
 package com.longtester.keywords;
 
+
 import com.longtester.driver.DriverManager;
 import com.longtester.helpers.PropertiesHelper;
 import com.longtester.helpers.SoftAssertHelper;
+import com.longtester.reports.AllureManager;
 import com.longtester.utils.LogUtils;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,7 +28,6 @@ public class WebUI {
     private static int PAGE_LOAD_TIMEOUT = 30;
 
 
-
     public static void sleep(double second) {
         try {
             Thread.sleep((long) (1000 * second));
@@ -37,29 +40,36 @@ public class WebUI {
         LogUtils.info(message);
     }
 
+    @Step("Refresh page")
     public static void refreshPage() {
         DriverManager.getDriver().navigate().refresh();
         DriverManager.getDriver().navigate().refresh();
         logConsole("Refresh page: " + DriverManager.getDriver().getTitle());
+        AllureManager.saveTextLog("Page: " + DriverManager.getDriver().getTitle());
     }
 
+    @Step("Back to previous page")
     public static void backToPreviousPage() {
         DriverManager.getDriver().navigate().back();
         logConsole("Back to previous page: " + DriverManager.getDriver().getTitle());
+        AllureManager.saveTextLog("Page: " + DriverManager.getDriver().getTitle());
     }
 
     public static String getCurrentURL() {
         String currentURL = DriverManager.getDriver().getCurrentUrl();
         logConsole("Current URL: " + currentURL);
+        AllureManager.saveTextLog("URL: " + currentURL);
         return currentURL;
     }
 
+    @Step("Open URL: {0}")
     public static void openURL(String url) {
         DriverManager.getDriver().get(url);
         sleep(STEP_TIME);
         logConsole("\uD83C\uDF10 Open URL: " + url);
     }
 
+    @Step("Click on element: {0}")
     public static void clickElement(By by) {
         waitForElementClickable(by);
         sleep(STEP_TIME);
@@ -77,6 +87,7 @@ public class WebUI {
         logConsole("Clear text on element " + by);
     }
 
+    @Step("Set text {1} on element {0}")
     public static void setText(By by, String value) {
         waitForElementVisible(by);
         sleep(STEP_TIME);
@@ -84,12 +95,14 @@ public class WebUI {
         logConsole("Set text " + value + " on element " + by);
     }
 
+    @Step("Upload file path {1} on element {0}")
     public static void uploadFile(By by, String filePath) {
         sleep(STEP_TIME);
         getWebElement(by).sendKeys(filePath);
         logConsole("Upload file: " + filePath + " on element " + by);
     }
 
+    @Step("Scroll to element {0}")
     public static void scrollToElementAtTop(By by) {
         sleep(STEP_TIME);
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
@@ -133,19 +146,23 @@ public class WebUI {
         js.executeScript(script, element);
     }
 
+    @Step("Get text on element {0}")
     public static String getElementText(By by) {
         waitForElementVisible(by);
         logConsole("Get text of element " + by);
         String text = getWebElement(by).getText();
         logConsole("==> TEXT: " + text);
+        AllureManager.saveTextLog("==> TEXT: " + text);
         return text; //Trả về một giá trị kiểu String
     }
 
+    @Step("Get attribute value {1} on element {0} ")
     public static String getElementAttribute(By by, String attributeName) {
         waitForElementVisible(by);
-        System.out.println("Get attribute of element " + by);
+        logConsole("Get attribute of element " + by);
         String value = getWebElement(by).getAttribute(attributeName);
-        System.out.println("==> Attribute value: " + value);
+        logConsole("==> Attribute value: " + value);
+        AllureManager.saveTextLog("==> Value: " + value);
         return value;
     }
 
@@ -174,6 +191,7 @@ public class WebUI {
         }
     }
 
+    @Step("Hover mouse on element {0}")
     public static void hoverMouse(By by) {
         try {
             waitForElementVisible(by);
@@ -186,6 +204,7 @@ public class WebUI {
         }
     }
 
+    @Step("Set slider to {1} on element {0}")
     public static void setValueToSlider(WebElement element, String value) {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
         js.executeScript("arguments[0].value='" + Integer.parseInt(value) + "';", element);
@@ -293,19 +312,44 @@ public class WebUI {
     }
 
     public static void verifyEqual(Object actual, Object expected, String message) {
+        boolean isEqual = String.valueOf(actual).equals(String.valueOf(expected));
+        String stepName;
+        if (isEqual) {
+            stepName = "✅ PASS: Verify equals | expected=[" + expected + "] and actual=[" + actual + "]";
+        } else {
+            stepName = "❌ FAIL: Verify equals | " + message +
+                    " | expected=[" + expected + "] but found=[" + actual + "]";
+        }
+        Allure.step(stepName);
         Assert.assertEquals(actual, expected, message);
-        logConsole("Verify equal: " + actual + " \uD83D\uDFF0 " + expected);
+        logConsole(stepName);
     }
 
     public static void softVerifyEqual(Object actual, Object expected, String message) {
+        boolean isEqual = String.valueOf(actual).equals(String.valueOf(expected));
+        String stepName;
+        if (isEqual) {
+            stepName = "✅ PASS: Verify equals | expected=[" + expected + "] and actual=[" + actual + "]";
+        } else {
+            stepName = "❌ FAIL: Verify equals | " + message +
+                    " | expected=[" + expected + "] but found=[" + actual + "]";
+        }
+        Allure.step(stepName);
         SoftAssertHelper.getSoftAssert().assertEquals(actual, expected, message);
-        logConsole("Verify equal: " + actual + " \uD83D\uDFF0 " + expected);
+        logConsole(stepName);
     }
 
     public static void verifyDisplay(By by, boolean check, String message) {
         String text = getWebElement(by).getText();
+        String stepName;
+        if (check) {
+            stepName = "✅ PASS: Verify element [" + text + "] is displayed";
+        } else {
+            stepName = "❌ FAIL: Verify element [" + text + "] is not displayed | " + message;
+        }
+        Allure.step(stepName);
         Assert.assertTrue(check, message);
-        logConsole("Verify " + text + " is displayed");
+        logConsole(stepName);
     }
 
     public static void verifyDisplay(WebElement element, boolean check, String message) {
@@ -316,8 +360,16 @@ public class WebUI {
 
     // Trường hợp page có inputSearch, dùng hàm này
     public static void verifyNotDisplay(List<WebElement> elements, String elementName, String message) {
-        Assert.assertTrue(elements.isEmpty(), message);
-        logConsole("Verify " + elementName + " is not displayed");
+        boolean isNotDisplayed = elements.isEmpty();
+        String stepName;
+        if (isNotDisplayed) {
+            stepName = "✅ PASS: Verify [" + elementName + "] is not displayed";
+        } else {
+            stepName = "❌ FAIL: Verify [" + elementName + "] is still displayed | " + message;
+        }
+        Allure.step(stepName);
+        Assert.assertTrue(isNotDisplayed, message);
+        logConsole(stepName);
     }
 
 

@@ -4,6 +4,8 @@ import com.longtester.driver.DriverManager;
 import com.longtester.helpers.DateHelper;
 import com.longtester.helpers.SystemHelper;
 import com.longtester.keywords.WebUI;
+import io.qameta.allure.Allure;
+import org.apache.xmlbeans.impl.xb.xsdschema.All;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -135,6 +137,7 @@ public class ProjectPage {
             }
         }
         WebUI.logConsole("Select month: " + expect_month);
+        Allure.step("Select month: " + expect_month);
         // Handle year
         while (true) {
             String actual_year = DriverManager.getDriver().findElement(currentYear).getText();
@@ -149,6 +152,7 @@ public class ProjectPage {
             }
         }
         WebUI.logConsole("Select year: " + expect_year);
+        Allure.step("Select year: " + expect_year);
         List<WebElement> allValidDate = WebUI.getWebElements(currentDate);
         for (WebElement e : allValidDate) {
             if (e.getText().equalsIgnoreCase(expect_day)) {
@@ -157,6 +161,7 @@ public class ProjectPage {
             }
         }
         WebUI.logConsole("Select date: " + expect_day);
+        Allure.step("Select date: " + expect_day);
     }
 
     public void addNewProject(String title, String client, String startDate, String endDate, String summary) {

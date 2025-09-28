@@ -6,9 +6,16 @@ import com.longtester.HRM.pages.ProjectPage;
 import com.longtester.common.BaseTest;
 import com.longtester.dataprovider.DataProviderFactory;
 import com.longtester.helpers.PropertiesHelper;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.Test;
 
 public class ProjectTest extends BaseTest {
+    @Owner("Minh Long")
+    @Epic("Project Management")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(dataProvider = "data_AddNewProject", dataProviderClass = DataProviderFactory.class,priority = 2)
     public void testAddNewProject(String title, String client, String startDate, String endDate, String summary) {
         LoginPage loginPage = new LoginPage();
@@ -19,7 +26,9 @@ public class ProjectTest extends BaseTest {
         projectPage.addNewProject(title, client, startDate, endDate, summary);
         projectPage.verifyAddProjectSuccess(title, client, startDate, endDate, summary);
     }
-
+    @Owner("Minh Long")
+    @Epic("Project Management")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(dataProvider = "data_editProject", dataProviderClass = DataProviderFactory.class,priority = 3)
     public void testEditProject(String title, String client, String startDate, String endDate, String summary, String update_endDate) {
         LoginPage loginPage = new LoginPage();
@@ -31,7 +40,9 @@ public class ProjectTest extends BaseTest {
         projectPage.editProject(title, update_endDate);
         projectPage.verifyDetailProjectAfterUpdate(update_endDate);
     }
-
+    @Owner("Minh Long")
+    @Epic("Project Management")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(dataProvider = "data_deleteProject", dataProviderClass = DataProviderFactory.class,priority = 4)
     public void testDeleteProject(String title, String client, String startDate, String endDate, String summary) {
         LoginPage loginPage = new LoginPage();
@@ -43,7 +54,9 @@ public class ProjectTest extends BaseTest {
         projectPage.deleteProject(title);
         projectPage.verifyProjectNotDisplayedAfterDelete(title);
     }
-
+    @Owner("Minh Long")
+    @Epic("Project Management")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(dataProvider = "data_editStatusProject", dataProviderClass = DataProviderFactory.class,priority = 1)
     public void testEditStatusProject(String title, String client, String startDate, String endDate, String summary, String status, String priority, String progress) {
         LoginPage loginPage = new LoginPage();

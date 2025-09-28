@@ -3,6 +3,7 @@ package com.longtester.listeners;
 import com.longtester.helpers.CaptureHelper;
 import com.longtester.helpers.PropertiesHelper;
 import com.longtester.mail.EmailSender;
+import com.longtester.reports.AllureManager;
 import com.longtester.utils.LogUtils;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -50,6 +51,8 @@ public class TestListener implements ITestListener {
         LogUtils.error("❌ Test case: " + iTestResult.getMethod().getMethodName() + " is failed.");
         LogUtils.error("📄 Reason: " + iTestResult.getThrowable());
         CaptureHelper.takeScreenshotBrowser(iTestResult.getMethod().getMethodName());
+        //Allure Report
+        AllureManager.saveScreenshotPNG();
         count_failedTCs++;
     }
 
