@@ -252,27 +252,27 @@ public class ProjectPage {
     private void handleCompleted() {
         int actual_TotalProjectsCompleted = getTotalProjectsCompleted();
         int expect_TotalProjectsCompleted = TotalProjectsCompletedBefore + 1;
+        WebUI.softVerifyEqual(actual_TotalProjectsCompleted, expect_TotalProjectsCompleted, "Total project completed not match with expected");
         int actual_TotalProjectsNotStarted = getTotalProjectsNotStarted();
         int expect_TotalProjectsNotStarted = TotalProjectsNotStartedBefore - 1;
-        WebUI.softVerifyEqual(actual_TotalProjectsCompleted, expect_TotalProjectsCompleted, "Total project completed not match with expected");
         WebUI.softVerifyEqual(actual_TotalProjectsNotStarted, expect_TotalProjectsNotStarted, "Total project notstarted not match with expected");
     }
 
     private void handleInProgress() {
         int actual_TotalProjectsInProgress = getTotalProjectsInProgress();
         int expect_TotalProjectsInProgress = TotalProjectsInProgressBefore + 1;
+        WebUI.softVerifyEqual(actual_TotalProjectsInProgress, expect_TotalProjectsInProgress, "Total project inprogress not match with expected");
         int actual_TotalProjectsNotStarted = getTotalProjectsNotStarted();
         int expect_TotalProjectsNotStarted = TotalProjectsNotStartedBefore - 1;
-        WebUI.softVerifyEqual(actual_TotalProjectsInProgress, expect_TotalProjectsInProgress, "Total project inprogress not match with expected");
         WebUI.softVerifyEqual(actual_TotalProjectsNotStarted, expect_TotalProjectsNotStarted, "Total project notstarted not match with expected");
     }
 
     private void handleOnHold() {
         int actual_TotalProjectsOnHold = getTotalProjectsOnHold();
         int expect_TotalProjectsOnHold = TotalProjectsOnHoldBefore + 1;
+        WebUI.softVerifyEqual(actual_TotalProjectsOnHold, expect_TotalProjectsOnHold, "Total project onhold not match with expected");
         int actual_TotalProjectsNotStarted = getTotalProjectsNotStarted();
         int expect_TotalProjectsNotStarted = TotalProjectsNotStartedBefore - 1;
-        WebUI.softVerifyEqual(actual_TotalProjectsOnHold, expect_TotalProjectsOnHold, "Total project onhold not match with expected");
         WebUI.softVerifyEqual(actual_TotalProjectsNotStarted, expect_TotalProjectsNotStarted, "Total project notstarted not match with expected");
     }
 
@@ -285,11 +285,11 @@ public class ProjectPage {
     public void verifyStatusProjectAfterUpdate(String status, String priority, String progress) {
         WebUI.refreshPage();
         String actual_status = WebUI.getElementText(By.xpath("//div[@class='br-current-rating' and normalize-space()='" + status + "']"));
+        WebUI.softVerifyEqual(actual_status, status, "Status not match with expected");
         String actual_priority = WebUI.getElementText(selectPriority);
+        WebUI.softVerifyEqual(actual_priority, priority, "Priority not match with expected");
         String actual_progress = WebUI.getElementText(sliderValue);
         WebUI.softVerifyEqual(actual_progress, progress, "Progress not match with expected");
-        WebUI.softVerifyEqual(actual_status, status, "Status not match with expected");
-        WebUI.softVerifyEqual(actual_priority, status, "Priority not match with expected");
         WebUI.backToPreviousPage();
         switch (status) {
             case "Completed":
@@ -317,7 +317,7 @@ public class ProjectPage {
         int expect_TotalProjectsNotStarted = TotalProjectsNotStartedBefore - 1;
         WebUI.softVerifyEqual(actual_TotalProjectsNotStarted, expect_TotalProjectsNotStarted, "Total project notstarted not match with expected");
         searchTitle(title);
-        List<WebElement> list_project = WebUI.getWebElements(By.xpath("//table//td[2][normalize-space()='" + title + "']"));
+        List<WebElement> list_project = WebUI.getWebElements(By.xpath("//table//td[1][normalize-space()='" + title + "']"));
         WebUI.verifyNotDisplay(list_project, title, title + " still display in table after delete");
         WebUI.assertAll();
     }

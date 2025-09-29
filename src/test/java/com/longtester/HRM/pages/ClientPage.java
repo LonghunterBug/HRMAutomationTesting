@@ -103,17 +103,16 @@ public class ClientPage {
                                               String gender, String email, String username) {
         clickViewDetail();
         String actual_firtname = WebUI.getElementAttribute(inputFirstName, "value");
-        String actual_lastname = WebUI.getElementAttribute(inputLastName, "value");
-        String actual_contactnumber = WebUI.getElementAttribute(inputContactNumber, "value");
-        String actual_email = WebUI.getElementAttribute(inputEmail, "value");
-        String actual_username = WebUI.getElementAttribute(inputUsername, "value");
-        String actual_gender = WebUI.getElementAttribute(selectGender, "title");
-
         WebUI.softVerifyEqual(actual_firtname, firstName, "First name not match with expected");
+        String actual_lastname = WebUI.getElementAttribute(inputLastName, "value");
         WebUI.softVerifyEqual(actual_lastname, lastName, "Last name not match with expected");
+        String actual_contactnumber = WebUI.getElementAttribute(inputContactNumber, "value");
         WebUI.softVerifyEqual(actual_contactnumber, contactNumber, "Contact number not match with expected");
+        String actual_email = WebUI.getElementAttribute(inputEmail, "value");
         WebUI.softVerifyEqual(actual_email, email, "Email not match with expected");
+        String actual_username = WebUI.getElementAttribute(inputUsername, "value");
         WebUI.softVerifyEqual(actual_username, username, "Username not match with expected");
+        String actual_gender = WebUI.getElementAttribute(selectGender, "title");
         WebUI.softVerifyEqual(actual_gender.trim(), gender, "Gender not match with expected");
         WebUI.assertAll();
     }

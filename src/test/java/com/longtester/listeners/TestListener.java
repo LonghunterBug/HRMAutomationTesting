@@ -50,9 +50,6 @@ public class TestListener implements ITestListener {
     public void onTestFailure(ITestResult iTestResult) {
         LogUtils.error("❌ Test case: " + iTestResult.getMethod().getMethodName() + " is failed.");
         LogUtils.error("📄 Reason: " + iTestResult.getThrowable());
-        CaptureHelper.takeScreenshotBrowser(iTestResult.getMethod().getMethodName());
-        //Allure Report
-        AllureManager.saveScreenshotPNG();
         count_failedTCs++;
     }
 

@@ -2,6 +2,7 @@ package com.longtester.keywords;
 
 
 import com.longtester.driver.DriverManager;
+import com.longtester.helpers.CaptureHelper;
 import com.longtester.helpers.PropertiesHelper;
 import com.longtester.helpers.SoftAssertHelper;
 import com.longtester.reports.AllureManager;
@@ -17,7 +18,9 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 
 public class WebUI {
@@ -125,7 +128,6 @@ public class WebUI {
     public static void highlightElement(By by) {
         // Highlight the element using JavaScript
         String script = "arguments[0].style.border='3px solid red';";
-
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
         js.executeScript(script, DriverManager.getDriver().findElement(by));
     }
@@ -254,6 +256,8 @@ public class WebUI {
             WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(TIMEOUT), Duration.ofMillis(500));
             wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         } catch (Throwable error) {
+            CaptureHelper.takeScreenshotBrowser("failed");
+            AllureManager.saveScreenshotPNG();
             logConsole("Timeout waiting for the element Visible. " + by.toString());
             Assert.fail("Timeout waiting for the element Visible. " + by.toString());
         }
@@ -294,6 +298,8 @@ public class WebUI {
             WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(TIMEOUT), Duration.ofMillis(500));
             wait.until(ExpectedConditions.elementToBeClickable(by));
         } catch (Throwable error) {
+            CaptureHelper.takeScreenshotBrowser("failed");
+            AllureManager.saveScreenshotPNG();
             logConsole("Timeout waiting for the element ready to click. " + by.toString());
             Assert.fail("Timeout waiting for the element ready to click. " + by.toString());
         }
@@ -301,14 +307,35 @@ public class WebUI {
 
     public static void verifySelect(By by, boolean check, String message) {
         String text = getWebElement(by).getText();
+        String stepName;
+        if (check) {
+            stepName = "✅ PASS: Verify element [" + text + "] is selected";
+        } else {
+            stepName = "❌ FAIL: Verify element [" + text + "] is selected | " + message;
+            highlightElement(by);
+            CaptureHelper.takeScreenshotBrowser("failed");
+            AllureManager.saveScreenshotPNG();
+        }
+        Allure.step(stepName);
         Assert.assertTrue(check, message);
-        logConsole("Verify " + text + " is checked");
+        logConsole(stepName);
+
     }
 
     public static void softVerifySelect(By by, boolean check, String message) {
         String text = getWebElement(by).getText();
+        String stepName;
+        if (check) {
+            stepName = "✅ PASS: Verify element [" + text + "] is selected";
+        } else {
+            stepName = "❌ FAIL: Verify element [" + text + "] is selected | " + message;
+            highlightElement(by);
+            CaptureHelper.takeScreenshotBrowser("failed");
+            AllureManager.saveScreenshotPNG();
+        }
+        Allure.step(stepName);
         SoftAssertHelper.getSoftAssert().assertTrue(check, message);
-        logConsole("Verify " + text + " is checked");
+        logConsole(stepName);
     }
 
     public static void verifyEqual(Object actual, Object expected, String message) {
@@ -319,6 +346,8 @@ public class WebUI {
         } else {
             stepName = "❌ FAIL: Verify equals | " + message +
                     " | expected=[" + expected + "] but found=[" + actual + "]";
+            CaptureHelper.takeScreenshotBrowser("failed");
+            AllureManager.saveScreenshotPNG();
         }
         Allure.step(stepName);
         Assert.assertEquals(actual, expected, message);
@@ -333,6 +362,8 @@ public class WebUI {
         } else {
             stepName = "❌ FAIL: Verify equals | " + message +
                     " | expected=[" + expected + "] but found=[" + actual + "]";
+            CaptureHelper.takeScreenshotBrowser("failed");
+            AllureManager.saveScreenshotPNG();
         }
         Allure.step(stepName);
         SoftAssertHelper.getSoftAssert().assertEquals(actual, expected, message);
@@ -345,7 +376,9 @@ public class WebUI {
         if (check) {
             stepName = "✅ PASS: Verify element [" + text + "] is displayed";
         } else {
-            stepName = "❌ FAIL: Verify element [" + text + "] is not displayed | " + message;
+            stepName = "❌ FAIL: Verify element [" + text + "] is displayed | " + message;
+            CaptureHelper.takeScreenshotBrowser("failed");
+            AllureManager.saveScreenshotPNG();
         }
         Allure.step(stepName);
         Assert.assertTrue(check, message);
@@ -361,11 +394,14 @@ public class WebUI {
     // Trường hợp page có inputSearch, dùng hàm này
     public static void verifyNotDisplay(List<WebElement> elements, String elementName, String message) {
         boolean isNotDisplayed = elements.isEmpty();
+        logConsole(isNotDisplayed);
         String stepName;
         if (isNotDisplayed) {
             stepName = "✅ PASS: Verify [" + elementName + "] is not displayed";
         } else {
-            stepName = "❌ FAIL: Verify [" + elementName + "] is still displayed | " + message;
+            stepName = "❌ FAIL: Verify [" + elementName + "] is not displayed | " + message;
+            CaptureHelper.takeScreenshotBrowser("failed");
+            AllureManager.saveScreenshotPNG();
         }
         Allure.step(stepName);
         Assert.assertTrue(isNotDisplayed, message);

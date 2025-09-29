@@ -5,6 +5,7 @@ import com.longtester.helpers.PropertiesHelper;
 import com.longtester.helpers.SoftAssertHelper;
 import com.longtester.keywords.WebUI;
 import com.longtester.listeners.TestListener;
+import io.qameta.allure.Allure;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -29,7 +30,7 @@ public class BaseTest {
         String browser = PropertiesHelper.getValue("BROWSER").trim().toLowerCase();
         ChromeOptions options = new ChromeOptions();
         boolean isHeadless = PropertiesHelper.getValue("HEADLESS").equalsIgnoreCase("true");
-
+        Allure.step("Open "+browser+" browser");
         switch (browser) {
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
@@ -74,6 +75,7 @@ public class BaseTest {
     public void tearDown(){
         if (DriverManager.getDriver() != null) {
                 DriverManager.getDriver().quit();  // luôn đóng driver
+                Allure.step("Close browser");
             }
         }
 }
