@@ -46,6 +46,25 @@ The project also uses Excel files to manage test data and .properties files for 
  ![image](https://github.com/user-attachments/assets/8d540300-89ff-4d97-91d0-83422968eed3)
  
  ![image](https://github.com/user-attachments/assets/9c0759e6-3458-4eba-bd9d-f7cfd46a81c4)
+ 
+## 🚀 How to run project
+1. **Clone this project**
+2. **Open project with IntelliJ IDEA**
+3. **Run parrallel testcases**
+  - Testcase in Suite XML (src/test/resources/suites/yourSuite.xml) is setup in the pom.xml file
+![image](https://github.com/user-attachments/assets/9de36ab1-cc8a-4cf1-8ff2-343f069f3839)
+  - Build and run test: mvn clean test
+![image](https://github.com/user-attachments/assets/10149f1e-1d3d-49fd-9c87-d29ba256f191)
+  - View allure report in temporary: allure serve target/allure-results
+
+
+    
+
+
+
+
+
+
 
  
 
