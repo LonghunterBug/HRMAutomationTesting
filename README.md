@@ -52,10 +52,33 @@ The project also uses Excel files to manage test data and .properties files for 
 2. **Open project with IntelliJ IDEA**
 3. **Run parrallel testcases**
   - Testcase in Suite XML (src/test/resources/suites/yourSuite.xml) is setup in the pom.xml file
+    
 ![image](https://github.com/user-attachments/assets/9de36ab1-cc8a-4cf1-8ff2-343f069f3839)
   - Build and run test: mvn clean test
+
 ![image](https://github.com/user-attachments/assets/10149f1e-1d3d-49fd-9c87-d29ba256f191)
+![image](https://github.com/user-attachments/assets/9baf3952-80d2-4194-b961-10ddd897dd46)
+
   - View allure report in temporary: allure serve target/allure-results
+![image](https://github.com/user-attachments/assets/0133cc4f-7428-4d99-a248-1eca2b46f1ff)
+![image](https://github.com/user-attachments/assets/8a7cb3ec-10ad-4702-badd-596ea58fc30f)
+4. **Other things in auto project**
+  - Use Log4j for debugging and tracking
+
+![image](https://github.com/user-attachments/assets/2bca7fce-2e0a-4986-9d42-7da2d2e39eed)
+
+  - Record video and Screenshot
+
+❗ **If run parallel, can only record/ screenshot on visible browser** 
+
+    - Config in **src/test/resources/configs/config.properties**
+      + RECORD_VIDEO= yes or no
+      + SCREENSHOT= yes or no
+![image](https://github.com/user-attachments/assets/d5b32ce1-e09c-444e-b42d-b2b30816961e)
+
+      
+ 
+
 
 
     
