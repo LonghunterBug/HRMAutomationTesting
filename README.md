@@ -70,6 +70,14 @@ The project also uses Excel files to manage test data and .properties files for 
 
 
 4. **Other things in auto project**
+  - Support for running multi-browser and headless mode
+    + Config in src/test/resources/configs/config.properties
+    + BROWSER= **chrome** or **firefox** or **edge**
+    + HEADLESS= false or true
+   
+![image](https://github.com/user-attachments/assets/7f311a39-e2d9-4ed2-9bdd-886e5ab5c664)
+
+   
   - Use Log4j for debugging and tracking
 
 ![image](https://github.com/user-attachments/assets/2bca7fce-2e0a-4986-9d42-7da2d2e39eed)
