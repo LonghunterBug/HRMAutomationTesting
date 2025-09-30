@@ -93,6 +93,10 @@ The project also uses Excel files to manage test data and .properties files for 
 ![image](https://github.com/user-attachments/assets/ce853580-0214-45ea-aed7-409f0a9bf6e3)
 ![image](https://github.com/user-attachments/assets/d6e08a60-4c0f-4b4f-b64a-f98d7eb18035)
 
+  - Read data test from Excel file
+    + Use annotation **@DataProvider** in TestNG, read and receive data in excel
+    + Function with annotation **@DataProvider** on src/test/java/com/longtester/dataprovider/DataProviderFactory.java
+
 
 
 
