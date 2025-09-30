@@ -11,13 +11,13 @@ import java.util.Properties;
 
 public class EmailSender {
     public static void sendMail(String OS, String browser, int total, int pass, int fail, int skip) {
-        final String fromEmail = EmailConfig.FROM;
-        final String password = EmailConfig.PASSWORD;
-        final String toEmail = EmailConfig.TO;
+        final String fromEmail = PropertiesHelper.getValue("FROM_MAIL");
+        final String password = PropertiesHelper.getValue("APP_PASSWORD");
+        final String toEmail = PropertiesHelper.getValue("TO_MAIL");
 
         Properties props = new Properties();
-        props.put("mail.smtp.host", EmailConfig.SERVER);
-        props.put("mail.smtp.port", EmailConfig.PORT);
+        props.put("mail.smtp.host", PropertiesHelper.getValue("SERVER"));
+        props.put("mail.smtp.port", PropertiesHelper.getValue("PORT"));
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
 

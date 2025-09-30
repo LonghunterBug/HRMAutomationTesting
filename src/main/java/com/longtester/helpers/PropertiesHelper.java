@@ -17,6 +17,7 @@ public class PropertiesHelper {
         LinkedList<String> files = new LinkedList<>();
         // Add tất cả file Properties vào đây theo mẫu
         files.add("src/test/resources/configs/config.properties");
+        files.add("src/test/resources/configs/mail.properties");
 //        files.add("src/test/resources/configs/local.properties");
 //        files.add("src/test/resources/configs/production.properties");
 

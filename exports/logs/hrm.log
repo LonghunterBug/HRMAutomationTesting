@@ -412,3 +412,42 @@ This is a test task with more than sixty characters to meet the requirement.
 [INFO] 30-09-2025 16:19:22 [main] LogUtils - ⚠ Skipped TCs: 0
 [INFO] 30-09-2025 16:19:26 [main] LogUtils - Allure report generated successfully!
 [INFO] 30-09-2025 16:19:49 [main] LogUtils - 📧 Sending result email to users successful
+[INFO] 30-09-2025 19:26:01 [main] LogUtils - ********** RUN STARTED **********
+[INFO] 30-09-2025 19:26:07 [TestNG-test=Feature - Login-2] LogUtils - Test case: testLoginFailureWithInvalidUsername is starting...
+[INFO] 30-09-2025 19:26:07 [TestNG-test=Feature - Login-1] LogUtils - Test case: testLoginFailureWithInvalidPassword is starting...
+[INFO] 30-09-2025 19:26:09 [TestNG-test=Feature - Login-2] LogUtils - 🌐 Open URL: https://hrm.anhtester.com/erp/login
+[INFO] 30-09-2025 19:26:09 [TestNG-test=Feature - Login-1] LogUtils - 🌐 Open URL: https://hrm.anhtester.com/erp/login
+[INFO] 30-09-2025 19:26:10 [TestNG-test=Feature - Login-2] LogUtils - Set text  on element By.xpath: //input[@id='iusername']
+[INFO] 30-09-2025 19:26:10 [TestNG-test=Feature - Login-1] LogUtils - Set text Alex on element By.xpath: //input[@id='iusername']
+[INFO] 30-09-2025 19:26:10 [TestNG-test=Feature - Login-2] LogUtils - Set text Nguyen on element By.xpath: //input[@id='ipassword']
+[INFO] 30-09-2025 19:26:10 [TestNG-test=Feature - Login-1] LogUtils - Set text  on element By.xpath: //input[@id='ipassword']
+[INFO] 30-09-2025 19:26:10 [TestNG-test=Feature - Login-2] LogUtils - Click on element By.xpath: //button[normalize-space()='Login']
+[INFO] 30-09-2025 19:26:10 [TestNG-test=Feature - Login-1] LogUtils - Click on element By.xpath: //button[normalize-space()='Login']
+[INFO] 30-09-2025 19:26:11 [TestNG-test=Feature - Login-2] LogUtils - Get text of element By.xpath: //div[@class='toast toast-error']
+[INFO] 30-09-2025 19:26:11 [TestNG-test=Feature - Login-2] LogUtils - ==> TEXT: The username field is required.
+[INFO] 30-09-2025 19:26:11 [TestNG-test=Feature - Login-1] LogUtils - Get text of element By.xpath: //div[@class='toast toast-error']
+[INFO] 30-09-2025 19:26:11 [TestNG-test=Feature - Login-1] LogUtils - ==> TEXT: The password field is required.
+[ERROR] 30-09-2025 19:26:11 [TestNG-test=Feature - Login-2] LogUtils - ❌ Test case: testLoginFailureWithInvalidUsername is failed.
+[ERROR] 30-09-2025 19:26:11 [TestNG-test=Feature - Login-2] LogUtils - 📄 Reason: java.lang.AssertionError: The username field is required. not match with expected expected [tThe username field is required.] but found [The username field is required.]
+[ERROR] 30-09-2025 19:26:11 [TestNG-test=Feature - Login-1] LogUtils - ❌ Test case: testLoginFailureWithInvalidPassword is failed.
+[ERROR] 30-09-2025 19:26:11 [TestNG-test=Feature - Login-1] LogUtils - 📄 Reason: java.lang.AssertionError: The password field is required. not match with expected expected [tThe password field is required.] but found [The password field is required.]
+[INFO] 30-09-2025 19:26:13 [TestNG-test=Feature - Login-2] LogUtils - Test case: testLoginSuccess is starting...
+[INFO] 30-09-2025 19:26:14 [TestNG-test=Feature - Login-2] LogUtils - 🌐 Open URL: https://hrm.anhtester.com/erp/login
+[INFO] 30-09-2025 19:26:14 [TestNG-test=Feature - Login-2] LogUtils - Set text annguyen on element By.xpath: //input[@id='iusername']
+[INFO] 30-09-2025 19:26:14 [TestNG-test=Feature - Login-2] LogUtils - Set text An@2025 on element By.xpath: //input[@id='ipassword']
+[INFO] 30-09-2025 19:26:14 [TestNG-test=Feature - Login-2] LogUtils - Click on element By.xpath: //button[normalize-space()='Login']
+[INFO] 30-09-2025 19:26:15 [TestNG-test=Feature - Login-2] LogUtils - Get text of element By.xpath: //h2[@id='swal2-title']
+[INFO] 30-09-2025 19:26:15 [TestNG-test=Feature - Login-2] LogUtils - ==> TEXT: Logged In Successfully.
+[INFO] 30-09-2025 19:26:15 [TestNG-test=Feature - Login-2] LogUtils - ✅ PASS: Verify equals | expected=[Logged In Successfully.] and actual=[Logged In Successfully.]
+[INFO] 30-09-2025 19:26:17 [TestNG-test=Feature - Login-2] LogUtils - ✅ PASS: Verify element [Home] is displayed
+[INFO] 30-09-2025 19:26:17 [TestNG-test=Feature - Login-2] LogUtils - Current URL: https://hrm.anhtester.com/erp/desk
+[INFO] 30-09-2025 19:26:17 [TestNG-test=Feature - Login-2] LogUtils - ✅ PASS: Verify equals | expected=[https://hrm.anhtester.com/erp/desk] and actual=[https://hrm.anhtester.com/erp/desk]
+[INFO] 30-09-2025 19:26:17 [TestNG-test=Feature - Login-2] LogUtils - ✅ Test case: testLoginSuccess is passed.
+[INFO] 30-09-2025 19:26:18 [main] LogUtils - ********** RUN FINISHED **********
+[INFO] 30-09-2025 19:26:18 [main] LogUtils - Test Summary:
+[INFO] 30-09-2025 19:26:18 [main] LogUtils - 📊 Total TCs: 3
+[INFO] 30-09-2025 19:26:18 [main] LogUtils - ✅ Passed TCs: 1
+[INFO] 30-09-2025 19:26:18 [main] LogUtils - ❌ Failed TCs: 2
+[INFO] 30-09-2025 19:26:18 [main] LogUtils - ⚠ Skipped TCs: 0
+[INFO] 30-09-2025 19:26:21 [main] LogUtils - Allure report generated successfully!
+[INFO] 30-09-2025 19:26:43 [main] LogUtils - 📧 Sending result email to users successful
