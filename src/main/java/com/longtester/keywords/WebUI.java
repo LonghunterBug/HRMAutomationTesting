@@ -298,7 +298,9 @@ public class WebUI {
             WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(TIMEOUT), Duration.ofMillis(500));
             wait.until(ExpectedConditions.elementToBeClickable(by));
         } catch (Throwable error) {
-            CaptureHelper.takeScreenshotBrowser("failed");
+            if(PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")){
+                CaptureHelper.takeScreenshotBrowser("failed");
+            }
             AllureManager.saveScreenshotPNG();
             logConsole("Timeout waiting for the element ready to click. " + by.toString());
             Assert.fail("Timeout waiting for the element ready to click. " + by.toString());
@@ -313,7 +315,9 @@ public class WebUI {
         } else {
             stepName = "❌ FAIL: Verify element [" + text + "] is selected | " + message;
             highlightElement(by);
-            CaptureHelper.takeScreenshotBrowser("failed");
+            if(PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")){
+                CaptureHelper.takeScreenshotBrowser("failed");
+            }
             AllureManager.saveScreenshotPNG();
         }
         Allure.step(stepName);
@@ -330,7 +334,9 @@ public class WebUI {
         } else {
             stepName = "❌ FAIL: Verify element [" + text + "] is selected | " + message;
             highlightElement(by);
-            CaptureHelper.takeScreenshotBrowser("failed");
+            if(PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")){
+                CaptureHelper.takeScreenshotBrowser("failed");
+            }
             AllureManager.saveScreenshotPNG();
         }
         Allure.step(stepName);
@@ -346,7 +352,9 @@ public class WebUI {
         } else {
             stepName = "❌ FAIL: Verify equals | " + message +
                     " | expected=[" + expected + "] but found=[" + actual + "]";
-            CaptureHelper.takeScreenshotBrowser("failed");
+            if(PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")){
+                CaptureHelper.takeScreenshotBrowser("failed");
+            }
             AllureManager.saveScreenshotPNG();
         }
         Allure.step(stepName);
@@ -362,7 +370,9 @@ public class WebUI {
         } else {
             stepName = "❌ FAIL: Verify equals | " + message +
                     " | expected=[" + expected + "] but found=[" + actual + "]";
-            CaptureHelper.takeScreenshotBrowser("failed");
+            if(PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")){
+                CaptureHelper.takeScreenshotBrowser("failed");
+            }
             AllureManager.saveScreenshotPNG();
         }
         Allure.step(stepName);
@@ -377,7 +387,9 @@ public class WebUI {
             stepName = "✅ PASS: Verify element [" + text + "] is displayed";
         } else {
             stepName = "❌ FAIL: Verify element [" + text + "] is displayed | " + message;
-            CaptureHelper.takeScreenshotBrowser("failed");
+            if(PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")){
+                CaptureHelper.takeScreenshotBrowser("failed");
+            }
             AllureManager.saveScreenshotPNG();
         }
         Allure.step(stepName);
@@ -400,7 +412,9 @@ public class WebUI {
             stepName = "✅ PASS: Verify [" + elementName + "] is not displayed";
         } else {
             stepName = "❌ FAIL: Verify [" + elementName + "] is not displayed | " + message;
-            CaptureHelper.takeScreenshotBrowser("failed");
+            if(PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")){
+                CaptureHelper.takeScreenshotBrowser("failed");
+            }
             AllureManager.saveScreenshotPNG();
         }
         Allure.step(stepName);

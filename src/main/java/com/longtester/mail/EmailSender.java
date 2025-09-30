@@ -2,13 +2,15 @@ package com.longtester.mail;
 
 import com.longtester.helpers.PropertiesHelper;
 import com.longtester.helpers.SystemHelper;
+import com.longtester.utils.LogUtils;
 import jakarta.mail.*;
 import jakarta.mail.internet.*;
+
 import java.io.File;
 import java.util.Properties;
 
 public class EmailSender {
-    public static void sendMail() {
+    public static void sendMail(String OS, String browser, int total, int pass, int fail, int skip) {
         final String fromEmail = EmailConfig.FROM;
         final String password = EmailConfig.PASSWORD;
         final String toEmail = EmailConfig.TO;
@@ -29,18 +31,50 @@ public class EmailSender {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(fromEmail));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
-            message.setSubject("📌 Selenium Test Screenshots");
+            message.setSubject("📌 [Automation] HRM Regression Report ");
+            String mailBody = """
+                    <p>Hi,</p>
+                    <p>This is the result for automation testing:</p>
+                    <b>OS:</b> %s<br/>
+                           <b>Browser:</b> %s</p>
+                    <table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse; text-align:center;">
+                      <tr style="background-color:#f2f2f2;">
+                        <th>Test Summary</th>
+                        <th>Quantity</th>
+                      </tr>
+                      <tr>
+                        <td>📊 <b>Total TCs</b></td>
+                        <td>%d</td>
+                      </tr>
+                      <tr style="color:green;">
+                        <td>✅ <b>Passed TCs</b></td>
+                        <td>%d</td>
+                      </tr>
+                      <tr style="color:red;">
+                        <td>❌ <b>Failed TCs</b></td>
+                        <td>%d</td>
+                      </tr>
+                      <tr style="color:orange;">
+                        <td>⚠ <b>Skipped TCs</b></td>
+                        <td>%d</td>
+                      </tr>
+                    </table>
+                    
+                    <br/>
+                    <p>Please read the report in the attachment.</p>
+                    <p>Regards,<br/>Minh Long</p>
+                    """.formatted(OS,browser,total, pass, fail, skip);
 
             // Nội dung text
             MimeBodyPart textPart = new MimeBodyPart();
-            textPart.setText("Chào bạn,\n\nĐính kèm tất cả ảnh screenshot sau khi chạy Selenium Test.");
+            textPart.setContent(mailBody, "text/html; charset=UTF-8");
 
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(textPart);
 
             // 📂 Lấy tất cả file trong thư mục screenshots
-            File folder = new File(SystemHelper.getCurrentDir() + PropertiesHelper.getValue("EXPORT_CAPTURE_PATH"));
-            File[] listOfFiles = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".png"));
+            File folder = new File(SystemHelper.getCurrentDir() + "allure-report");
+            File[] listOfFiles = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".html"));
 
             if (listOfFiles != null && listOfFiles.length > 0) {
                 for (File file : listOfFiles) {
@@ -49,7 +83,7 @@ public class EmailSender {
                     multipart.addBodyPart(attachmentPart);
                 }
             } else {
-                System.out.println("⚠ Không tìm thấy file ảnh trong thư mục screenshots.");
+                LogUtils.info("⚠ Not found any file in path" + SystemHelper.getCurrentDir() + "allure-report");
             }
 
             // set multipart vào email

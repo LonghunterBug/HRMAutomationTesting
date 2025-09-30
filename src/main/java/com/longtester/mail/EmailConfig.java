@@ -7,5 +7,5 @@ public class EmailConfig {
     public static final String FROM = "metacross2000@gmail.com";
     public static final String PASSWORD = "zeaoonlacgsgrfwx";
 
-    public static final String TO = "meta@mailinator.com";
+    public static final String TO = "tranminhlong2707@gmail.com";
 }

@@ -27,12 +27,12 @@ public class LoginPage {
     public void verifyShowAlertErrorInputUsernameRequired(){
         WebUI.waitForElementVisible(alertErrorInputRequiredField);
         String actual_text= WebUI.getElementText(alertErrorInputRequiredField);
-        WebUI.verifyEqual(actual_text,"The username field is required.",actual_text + " not match with expected");
+        WebUI.verifyEqual(actual_text,"tThe username field is required.",actual_text + " not match with expected");
     }
     public void verifyShowAlertErrorInputPasswordRequired(){
         WebUI.waitForElementVisible(alertErrorInputRequiredField);
         String actual_text= WebUI.getElementText(alertErrorInputRequiredField);
-        WebUI.verifyEqual(actual_text,"The password field is required.",actual_text + " not match with expected");
+        WebUI.verifyEqual(actual_text,"tThe password field is required.",actual_text + " not match with expected");
     }
 
 }
