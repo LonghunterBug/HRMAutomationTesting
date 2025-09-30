@@ -62,6 +62,11 @@ The project also uses Excel files to manage test data and .properties files for 
   - View allure report in temporary: allure serve target/allure-results
 ![image](https://github.com/user-attachments/assets/0133cc4f-7428-4d99-a248-1eca2b46f1ff)
 ![image](https://github.com/user-attachments/assets/8a7cb3ec-10ad-4702-badd-596ea58fc30f)
+
+  - Generate allure report in HTML: allure generate --single-file target/allure-results
+![image](https://github.com/user-attachments/assets/c157f60a-d2d4-461c-be9f-8686344c9776)
+
+
 4. **Other things in auto project**
   - Use Log4j for debugging and tracking
 
