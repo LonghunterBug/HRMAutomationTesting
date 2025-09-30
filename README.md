@@ -60,10 +60,12 @@ The project also uses Excel files to manage test data and .properties files for 
 ![image](https://github.com/user-attachments/assets/9baf3952-80d2-4194-b961-10ddd897dd46)
 
   - View allure report in temporary: allure serve target/allure-results
+
 ![image](https://github.com/user-attachments/assets/0133cc4f-7428-4d99-a248-1eca2b46f1ff)
 ![image](https://github.com/user-attachments/assets/8a7cb3ec-10ad-4702-badd-596ea58fc30f)
 
   - Generate allure report in HTML: allure generate --single-file target/allure-results
+
 ![image](https://github.com/user-attachments/assets/c157f60a-d2d4-461c-be9f-8686344c9776)
 
 
@@ -76,13 +78,22 @@ The project also uses Excel files to manage test data and .properties files for 
 
 ❗ **If run parallel, can only record/ screenshot on visible browser** 
 
-    - Config in **src/test/resources/configs/config.properties**
-      + RECORD_VIDEO= yes or no
-      + SCREENSHOT= yes or no
+    + Config in src/test/resources/configs/config.properties
+    + RECORD_VIDEO= yes or no
+    + SCREENSHOT= yes or no
 ![image](https://github.com/user-attachments/assets/d5b32ce1-e09c-444e-b42d-b2b30816961e)
 
-      
- 
+  - Send mail after run test
+
+❗ **Write your own mail credentials, app password in mail.properties**
+
+    + Config in src/test/resources/configs/config.properties
+    + SEND_EMAIL_TO_USERS= yes or no
+    + Config from_mail, password, to_mail in src/test/resources/configs/mail.properties
+![image](https://github.com/user-attachments/assets/ce853580-0214-45ea-aed7-409f0a9bf6e3)
+![image](https://github.com/user-attachments/assets/d6e08a60-4c0f-4b4f-b64a-f98d7eb18035)
+
+
 
 
 
