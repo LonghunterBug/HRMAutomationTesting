@@ -21,12 +21,13 @@ public class ClientPage {
     By inputUsername = By.xpath("//input[@placeholder='Username']");
     By uploadAttachment = By.xpath("//input[@name='file']");
     By buttonSave = By.xpath("//span[normalize-space()='Save']/parent::button");
+    By avatarClient = By.xpath("//div[@class='certificated-badge']/preceding-sibling::img");
     // Personal Information form
     By selectCountry = By.xpath("//label[@for='country']/following::span[contains(@id,'country')]");
     By inputSearchCountry = By.xpath("//input[@type='search' and @role='searchbox']");
     By buttonSubmit = By.xpath("//div[@class='card-body']//button[@type='submit']");
 
-    By alertAddNewClientSuccess = By.xpath("//div[contains(@class,'toast-success')]");
+    By alertSuccess = By.xpath("//div[contains(@class,'toast-success')]");
     By inputSearch = By.xpath("//input[@type='search']");
     By buttonViewDetail = By.xpath("//button/parent::a[contains(@href,'view-client')]");
     By buttonDeleteClient = By.xpath("//button/parent::span[@data-original-title='Delete']");
@@ -90,8 +91,8 @@ public class ClientPage {
     }
 
     public void verifyAddNewClientSuccess(String username) {
-        WebUI.waitForElementVisible(alertAddNewClientSuccess);
-        String actual_text = WebUI.getElementText(alertAddNewClientSuccess);
+        WebUI.waitForElementVisible(alertSuccess);
+        String actual_text = WebUI.getElementText(alertSuccess);
         WebUI.softVerifyEqual(actual_text, "Client added.", actual_text + " not match with expected");
         searchClient(username);
         String actual_textUsername = WebUI.getElementText(By.xpath("//table//td[2]"));
@@ -114,6 +115,7 @@ public class ClientPage {
         WebUI.softVerifyEqual(actual_username, username, "Username not match with expected");
         String actual_gender = WebUI.getElementAttribute(selectGender, "title");
         WebUI.softVerifyEqual(actual_gender.trim(), gender, "Gender not match with expected");
+        WebUI.verifyImageUpLoaded(avatarClient,"Avatar client not loaded");
         WebUI.assertAll();
     }
 

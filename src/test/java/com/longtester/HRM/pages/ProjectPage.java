@@ -39,7 +39,7 @@ public class ProjectPage {
     By totalProjectsNotStarted = By.xpath("//span[normalize-space()='Not Started']/ancestor::div/h2");
     By totalProjectsOnHold = By.xpath("//span[normalize-space()='On Hold']/ancestor::div/h2");
     //Common
-    By alertAddNewProjectSuccess = By.xpath("//div[contains(@class,'toast-success')]");
+    By alertSuccess = By.xpath("//div[contains(@class,'toast-success')]");
     By inputSearch = By.xpath("//input[@type='search' and @aria-controls='xin_table']");
     By buttonViewDetail = By.xpath("//button/parent::a[contains(@href,'project-detail')]");
     By buttonDeleteProject = By.xpath("//button/parent::span[@data-original-title='Delete']");
@@ -65,8 +65,7 @@ public class ProjectPage {
     By tabAttachFile = By.xpath("//a[normalize-space()='Attach files']");
     By inputFileName = By.xpath("//input[@name='file_name']");
     By buttonChooseFile = By.xpath("//input[@id='attachment_file']");
-    By buttonAddFile = By.xpath("//span[normalize-space()='Add File']");
-
+    By buttonAddFile = By.xpath("//span[normalize-space()='Add File']/parent::button");
 
 
     private int TotalProjectsCompletedBefore;
@@ -224,6 +223,7 @@ public class ProjectPage {
         WebUI.clickElement(tabAttachFile);
         WebUI.setText(inputFileName, fileName);
         WebUI.uploadFile(buttonChooseFile, SystemHelper.getCurrentDir() + filepath);
+        WebUI.clickElement(buttonAddFile);
     }
 
     public void verifyAddProjectSuccess(String title, String client, String startDate, String endDate, String summary) {
@@ -241,6 +241,13 @@ public class ProjectPage {
         WebUI.softVerifyEqual(WebUI.getElementText(textEndDate).trim(), endDate, "End date not match with expected");
         WebUI.softVerifyEqual(WebUI.getElementText(textSummary).replace("Summary", "").trim(), summary, "Summary not match with expected");
         WebUI.assertAll();
+    }
+
+    public void verifyUploadAttachSuccess(String fileName) {
+        WebUI.sleep(4);// Lí do: do page đợi ẩn toast message và refresh page
+        WebUI.clickElement(tabAttachFile);
+        By hyperlink = By.xpath("//h6[@class='mb-0' and normalize-space(text()[1])='" + fileName + "']/parent::a/following-sibling::div//a[contains(@href,'download')]");
+        WebUI.verifyFileUpLoaded(hyperlink, "File not uploaded");
     }
 
     public void verifyDetailProjectAfterUpdate(String update_endDate) {

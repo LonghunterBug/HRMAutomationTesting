@@ -34,7 +34,6 @@ public class TaskPage {
     // Status task
     By totalTasksNotStarted = By.xpath("//span[normalize-space()='Not Started']/ancestor::div/h2");
     //Common
-    By alertAddNewTaskSuccess = By.xpath("//div[contains(@class,'toast-success')]");
     By inputSearch = By.xpath("//input[@type='search' and @aria-controls='xin_table']");
     By buttonViewDetail = By.xpath("//button/parent::a[contains(@href,'task-detail')]");
     By buttonDeleteTask = By.xpath("//button/parent::span[@data-original-title='Delete']");

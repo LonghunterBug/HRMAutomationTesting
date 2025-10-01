@@ -12,7 +12,8 @@
     </test>
     <test name="Feature - Manage Project">
         <classes>
-            <class name="com.longtester.HRM.testcases.ProjectTest"/>
+            <class name="com.longtester.HRM.testcases.ProjectTest">
+            </class>
         </classes>
     </test>
     <test name="Feature - Manage Task">

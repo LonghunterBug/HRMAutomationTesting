@@ -18,6 +18,10 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
@@ -256,20 +260,12 @@ public class WebUI {
             WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(TIMEOUT), Duration.ofMillis(500));
             wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         } catch (Throwable error) {
-            CaptureHelper.takeScreenshotBrowser("failed");
+            if (PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")) {
+                CaptureHelper.takeScreenshotBrowser("failed");
+            }
             AllureManager.saveScreenshotPNG();
             logConsole("Timeout waiting for the element Visible. " + by.toString());
             Assert.fail("Timeout waiting for the element Visible. " + by.toString());
-        }
-    }
-
-    public static void waitForAllElementsVisible(By by) {
-        try {
-            WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(TIMEOUT), Duration.ofMillis(500));
-            wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
-        } catch (Throwable error) {
-            logConsole("Timeout waiting for the element Visible. " + by.toString());
-            //Assert.fail("Timeout waiting for the element Visible. " + by.toString());
         }
     }
 
@@ -283,22 +279,12 @@ public class WebUI {
         }
     }
 
-    public static void waitForAllElementsPresent(By by) {
-        try {
-            WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(TIMEOUT), Duration.ofMillis(500));
-            wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
-        } catch (Throwable error) {
-            logConsole("Element not exist. " + by.toString());
-            Assert.fail("Element not exist. " + by.toString());
-        }
-    }
-
     public static void waitForElementClickable(By by) {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(TIMEOUT), Duration.ofMillis(500));
             wait.until(ExpectedConditions.elementToBeClickable(by));
         } catch (Throwable error) {
-            if(PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")){
+            if (PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")) {
                 CaptureHelper.takeScreenshotBrowser("failed");
             }
             AllureManager.saveScreenshotPNG();
@@ -315,7 +301,7 @@ public class WebUI {
         } else {
             stepName = "❌ FAIL: Verify element [" + text + "] is selected | " + message;
             highlightElement(by);
-            if(PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")){
+            if (PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")) {
                 CaptureHelper.takeScreenshotBrowser("failed");
             }
             AllureManager.saveScreenshotPNG();
@@ -334,7 +320,7 @@ public class WebUI {
         } else {
             stepName = "❌ FAIL: Verify element [" + text + "] is selected | " + message;
             highlightElement(by);
-            if(PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")){
+            if (PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")) {
                 CaptureHelper.takeScreenshotBrowser("failed");
             }
             AllureManager.saveScreenshotPNG();
@@ -352,7 +338,7 @@ public class WebUI {
         } else {
             stepName = "❌ FAIL: Verify equals | " + message +
                     " | expected=[" + expected + "] but found=[" + actual + "]";
-            if(PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")){
+            if (PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")) {
                 CaptureHelper.takeScreenshotBrowser("failed");
             }
             AllureManager.saveScreenshotPNG();
@@ -370,7 +356,7 @@ public class WebUI {
         } else {
             stepName = "❌ FAIL: Verify equals | " + message +
                     " | expected=[" + expected + "] but found=[" + actual + "]";
-            if(PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")){
+            if (PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")) {
                 CaptureHelper.takeScreenshotBrowser("failed");
             }
             AllureManager.saveScreenshotPNG();
@@ -387,7 +373,7 @@ public class WebUI {
             stepName = "✅ PASS: Verify element [" + text + "] is displayed";
         } else {
             stepName = "❌ FAIL: Verify element [" + text + "] is displayed | " + message;
-            if(PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")){
+            if (PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")) {
                 CaptureHelper.takeScreenshotBrowser("failed");
             }
             AllureManager.saveScreenshotPNG();
@@ -412,13 +398,72 @@ public class WebUI {
             stepName = "✅ PASS: Verify [" + elementName + "] is not displayed";
         } else {
             stepName = "❌ FAIL: Verify [" + elementName + "] is not displayed | " + message;
-            if(PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")){
+            if (PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")) {
                 CaptureHelper.takeScreenshotBrowser("failed");
             }
             AllureManager.saveScreenshotPNG();
         }
         Allure.step(stepName);
         Assert.assertTrue(isNotDisplayed, message);
+        logConsole(stepName);
+    }
+
+    public static void verifyImageUpLoaded(By by, String message) {
+        waitForElementPresent(by);
+        String srcAtrribute = getElementAttribute(by, "src");
+        String stepName = "";
+        if (srcAtrribute == null || srcAtrribute.isEmpty()) {
+            stepName = "❌ FAIL: " + by + " not have attribute src";
+            SoftAssertHelper.getSoftAssert().fail();
+        }
+        try {
+            URL linkURL = new URL(srcAtrribute);// convert src value from string to URL format
+            HttpURLConnection connection = (HttpURLConnection) linkURL.openConnection();// open connection to server
+            connection.connect();// send request to server
+            if (connection.getResponseCode() >= 400) {
+                stepName = "❌ FAIL: Verify image of [" + srcAtrribute + "] is loaded | " + message;
+                if (PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")) {
+                    CaptureHelper.takeScreenshotBrowser("failed");
+                }
+                AllureManager.saveScreenshotPNG();
+                SoftAssertHelper.getSoftAssert().fail(message);
+            } else {
+                stepName = "✅ PASS: Verify image of [" + srcAtrribute + "] is loaded";
+                SoftAssertHelper.getSoftAssert().assertTrue(true);
+            }
+        } catch (Exception e) {
+            logConsole("URL is not valid: " + srcAtrribute +e.getMessage());
+        }
+        Allure.step(stepName);
+        logConsole(stepName);
+    }
+    public static void verifyFileUpLoaded(By by, String message) {
+        waitForElementPresent(by);
+        String srcAtrribute = getElementAttribute(by, "href");
+        String stepName = "";
+        if (srcAtrribute == null || srcAtrribute.isEmpty()) {
+            stepName = "❌ FAIL: " + by + " not have attribute src";
+            SoftAssertHelper.getSoftAssert().fail();
+        }
+        try {
+            URL linkURL = new URL(srcAtrribute);// convert src value from string to URL format
+            HttpURLConnection connection = (HttpURLConnection) linkURL.openConnection();// open connection to server
+            connection.connect();// send request to server
+            if (connection.getResponseCode() >= 400) {
+                stepName = "❌ FAIL: Verify file of [" + srcAtrribute + "] is uploaded | " + message;
+                if (PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")) {
+                    CaptureHelper.takeScreenshotBrowser("failed");
+                }
+                AllureManager.saveScreenshotPNG();
+                SoftAssertHelper.getSoftAssert().fail(message);
+            } else {
+                stepName = "✅ PASS: Verify file of [" + srcAtrribute + "] is uploaded";
+                SoftAssertHelper.getSoftAssert().assertTrue(true);
+            }
+        } catch (Exception e) {
+            logConsole("URL is not valid: " + srcAtrribute +e.getMessage());
+        }
+        Allure.step(stepName);
         logConsole(stepName);
     }
 

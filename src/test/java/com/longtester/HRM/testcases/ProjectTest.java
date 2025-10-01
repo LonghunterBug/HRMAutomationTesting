@@ -73,15 +73,21 @@ public class ProjectTest extends BaseTest {
         projectPage.editStatus(title, progress, status, priority);
         projectPage.verifyStatusProjectAfterUpdate(status, priority, progress);
     }
-
-//    @Test(dataProvider = "data_addAttachFileProject", dataProviderClass = DataProviderFactory.class)
-//    public void testAddAttachFileProject(String title, String client, String startDate, String endDate, String summary, String filename, String filepath) {
-//        LoginPage loginPage = new LoginPage();
-//        BasePage basePage = new BasePage();
-//        ProjectPage projectPage = new ProjectPage();
-//        loginPage.loginHRM(PropertiesHelper.getValue("ADMIN_USERNAME"), PropertiesHelper.getValue("ADMIN_PASSWORD"));
-//        basePage.clickMenuProject();
-//        projectPage.addAttachFile(title, filename, filepath);
-//    }
+    @Owner("Minh Long")
+    @Epic("Project Management")
+    @Feature("Add attach file for project")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Test add attach file function")
+    @Test(dataProvider = "data_addAttachFileProject", dataProviderClass = DataProviderFactory.class)
+    public void testAddAttachFileProject(String title, String client, String startDate, String endDate, String summary, String filename, String filepath) {
+        LoginPage loginPage = new LoginPage();
+        BasePage basePage = new BasePage();
+        ProjectPage projectPage = new ProjectPage();
+        loginPage.loginHRM(PropertiesHelper.getValue("ADMIN_USERNAME"), PropertiesHelper.getValue("ADMIN_PASSWORD"));
+        basePage.clickMenuProject();
+        projectPage.addNewProject(title,client,startDate,endDate,summary);
+        projectPage.addAttachFile(title, filename, filepath);
+        projectPage.verifyUploadAttachSuccess(filename);
+    }
 
 }

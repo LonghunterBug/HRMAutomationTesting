@@ -67,7 +67,9 @@ public class BaseTest {
                 driver = new ChromeDriver(); // mặc định Chrome
         }
         DriverManager.setDriver(driver);
-        DriverManager.getDriver().manage().window().maximize();
+        if (!isHeadless) {
+            DriverManager.getDriver().manage().window().maximize();
+        }
         // Reset SoftAssert trước mỗi test
         SoftAssertHelper.resetSoftAssert();
     }
