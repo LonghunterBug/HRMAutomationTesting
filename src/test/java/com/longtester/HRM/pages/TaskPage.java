@@ -69,6 +69,7 @@ public class TaskPage {
         WebUI.waitForElementVisible(buttonViewDetail);
         WebUI.clickElement(buttonViewDetail);
     }
+
     private void clickDeleteTask() {
         WebUI.hoverMouse(By.xpath("//tbody/tr[@role='row']"));
         WebUI.waitForElementVisible(buttonDeleteTask);
@@ -135,6 +136,7 @@ public class TaskPage {
         WebUI.setText(inputSummary, summary);
         WebUI.clickElement(buttonSave);
     }
+
     public void deleteTask(String titleTask) {
         WebUI.refreshPage();
         TotalTaskNotStartedBefore = getTotalTasksNotStarted();// Lấy con số trước khi delete project
@@ -147,16 +149,19 @@ public class TaskPage {
         TotalTaskNotStartedBefore = getTotalTasksNotStarted();
         WebUI.refreshPage();
         int expect_TotalTaskNotStarted = TotalTaskNotStartedBefore + 1;
-        WebUI.softVerifyEqual(getTotalTasksNotStarted(),expect_TotalTaskNotStarted,"Total task notstarted not match with expected");
+        WebUI.softVerifyEqual(getTotalTasksNotStarted(), expect_TotalTaskNotStarted, "Total task notstarted not match with expected");
         searchTitle(titleTask);
+        String actual_titleTask = WebUI.getElementText(By.xpath("//table[@id='xin_table']/tbody//td[1]"));
+        WebUI.softVerifyEqual(actual_titleTask, titleTask, "Title task in table not match with expected");
         clickViewDetail();
         WebUI.softVerifyEqual(WebUI.getElementText(textTitle), titleTask, "Title task not match with expected");
         WebUI.softVerifyEqual(WebUI.getElementText(textStartDate).trim(), startDateTask, "Start date task not match with expected");
         WebUI.softVerifyEqual(WebUI.getElementText(textEndDate).trim(), endDateTask, "End date task not match with expected");
         WebUI.softVerifyEqual(WebUI.getElementText(textProject).trim(), project, "Project task not match with expected");
-        WebUI.softVerifyEqual(WebUI.getElementText(textSummary).replace("Summary","").trim(), summary, "Summary task not match with expected");
+        WebUI.softVerifyEqual(WebUI.getElementText(textSummary).replace("Summary", "").trim(), summary, "Summary task not match with expected");
         WebUI.assertAll();
     }
+
     public void verifyTaskNotDisplayedAfterDelete(String titleTask) {
         WebUI.refreshPage();
         int actual_TotalTasksNotStarted = getTotalTasksNotStarted();

@@ -24,8 +24,7 @@ public class ClientTest extends BaseTest {
         loginPage.loginHRM(PropertiesHelper.getValue("ADMIN_USERNAME"), PropertiesHelper.getValue("ADMIN_PASSWORD"));
         basePage.clickMenuClient();
         clientPage.addNewClient(firstName, lastName, password, contactNumber, gender, email, username, filepath);
-        clientPage.verifyAddNewClientSuccess(username);
-        clientPage.verifyDetailClientAfterAddNew(firstName, lastName, contactNumber, gender, email, username);
+        clientPage.verifyAddNewClientSuccess(firstName, lastName, contactNumber, gender, email, username);
     }
     @Owner("Minh Long")
     @Epic("Client Management")

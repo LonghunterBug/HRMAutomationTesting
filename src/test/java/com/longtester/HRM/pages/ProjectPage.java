@@ -233,7 +233,7 @@ public class ProjectPage {
         WebUI.softVerifyEqual(getTotalProjectsNotStarted(), expect_TotalProjectsNotStarted, "Total project notstarted not match with expected");
         searchTitle(title);
         String actual_textTitle = WebUI.getElementText(By.xpath("//table[@id='xin_table']//td[1]"));
-        WebUI.softVerifyEqual(actual_textTitle, title, title + "Title in table not match with expected");
+        WebUI.softVerifyEqual(actual_textTitle, title, "Title in table not match with expected");
         clickViewDetail();
         WebUI.softVerifyEqual(WebUI.getElementText(textTitle), title, "Title not match with expected");
         WebUI.softVerifyEqual(WebUI.getElementText(textClient), client, "Client not match with expected");

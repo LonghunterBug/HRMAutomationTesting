@@ -1,11 +1,14 @@
 package com.longtester.common;
 
+
 import com.longtester.driver.DriverManager;
 import com.longtester.helpers.PropertiesHelper;
 import com.longtester.helpers.SoftAssertHelper;
 import com.longtester.keywords.WebUI;
 import com.longtester.listeners.TestListener;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Allure;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -21,18 +24,20 @@ import org.testng.annotations.Listeners;
 @Listeners(TestListener.class)
 public class BaseTest {
     @BeforeSuite
-    public void runConfig(){
+    public void runConfig() {
         PropertiesHelper.loadAllFiles();
     }
+
     @BeforeMethod
-    public void openBrowser(){
+    public void openBrowser() {
         WebDriver driver;// khao báo driver cục bộ
         String browser = PropertiesHelper.getValue("BROWSER").trim().toLowerCase();
         ChromeOptions options = new ChromeOptions();
         boolean isHeadless = PropertiesHelper.getValue("HEADLESS").equalsIgnoreCase("true");
-        Allure.step("Open "+browser+" browser");
+        Allure.step("Open " + browser + " browser");
         switch (browser) {
             case "chrome":
+                //WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 if (isHeadless) {
                     chromeOptions.addArguments("--guest");
@@ -42,25 +47,24 @@ public class BaseTest {
                 chromeOptions.addArguments("--guest");
                 driver = new ChromeDriver(chromeOptions);
                 break;
-
             case "firefox":
+                //WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 if(isHeadless){
-                    firefoxOptions.addArguments("--guest");
                     firefoxOptions.addArguments("--headless");
-                    firefoxOptions.addArguments("--window-size=1920,1080");
                 }
-                firefoxOptions.addArguments("--guest");
                 driver = new FirefoxDriver(firefoxOptions);
+                if (isHeadless) {
+                    driver.manage().window().setSize(new Dimension(1920, 1080));// Firefox bỏ qua --window-size
+                }
                 break;
             case "edge":
+                //WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
                 if (isHeadless) {
-                    edgeOptions.addArguments("--guest");
                     edgeOptions.addArguments("--headless");
                     edgeOptions.addArguments("--window-size=1920,1080");
                 }
-                edgeOptions.addArguments("--guest");
                 driver = new EdgeDriver(edgeOptions);
                 break;
             default:
@@ -73,11 +77,12 @@ public class BaseTest {
         // Reset SoftAssert trước mỗi test
         SoftAssertHelper.resetSoftAssert();
     }
+
     @AfterMethod
-    public void tearDown(){
+    public void tearDown() {
         if (DriverManager.getDriver() != null) {
-                DriverManager.getDriver().quit();  // luôn đóng driver
-                Allure.step("Close browser");
-            }
+            DriverManager.getDriver().quit();  // luôn đóng driver
+            Allure.step("Close " + PropertiesHelper.getValue("BROWSER").trim().toLowerCase() + " browser");
         }
+    }
 }

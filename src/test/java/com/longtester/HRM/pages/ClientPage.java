@@ -90,18 +90,14 @@ public class ClientPage {
         WebUI.clickElement(buttonDeleteClient);
     }
 
-    public void verifyAddNewClientSuccess(String username) {
+    public void verifyAddNewClientSuccess(String firstName, String lastName, String contactNumber,
+                                              String gender, String email, String username) {
         WebUI.waitForElementVisible(alertSuccess);
         String actual_text = WebUI.getElementText(alertSuccess);
         WebUI.softVerifyEqual(actual_text, "Client added.", actual_text + " not match with expected");
         searchClient(username);
         String actual_textUsername = WebUI.getElementText(By.xpath("//table//td[2]"));
-        WebUI.verifyEqual(actual_textUsername, username, username + "Username in table not match with expected");
-        WebUI.assertAll();
-    }
-
-    public void verifyDetailClientAfterAddNew(String firstName, String lastName, String contactNumber,
-                                              String gender, String email, String username) {
+        WebUI.softVerifyEqual(actual_textUsername, username, "Username in table not match with expected");
         clickViewDetail();
         String actual_firtname = WebUI.getElementAttribute(inputFirstName, "value");
         WebUI.softVerifyEqual(actual_firtname, firstName, "First name not match with expected");
