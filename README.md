@@ -75,7 +75,7 @@ The project also uses Excel files to manage test data and .properties files for 
     + BROWSER= **chrome** or **firefox** or **edge**
     + HEADLESS= false or true
    
-![image](https://github.com/user-attachments/assets/7f311a39-e2d9-4ed2-9bdd-886e5ab5c664)
+![image](https://github.com/user-attachments/assets/39b6c5f5-6562-4489-90a7-a8f14d140f96)
 
    
   - Use Log4j for debugging and tracking
