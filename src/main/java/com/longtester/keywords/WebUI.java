@@ -28,7 +28,6 @@ import java.util.Date;
 import java.util.List;
 
 public class WebUI {
-    private static WebDriver driver;
 
     private static int TIMEOUT = Integer.parseInt(PropertiesHelper.getValue("WAIT_EXPLICIT"));
     private static double STEP_TIME = Double.parseDouble(PropertiesHelper.getValue("SLEEP_TIME"));

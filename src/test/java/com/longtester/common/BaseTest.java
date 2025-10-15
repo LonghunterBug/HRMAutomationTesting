@@ -32,19 +32,17 @@ public class BaseTest {
     public void openBrowser() {
         WebDriver driver;// khao báo driver cục bộ
         String browser = PropertiesHelper.getValue("BROWSER").trim().toLowerCase();
-        ChromeOptions options = new ChromeOptions();
         boolean isHeadless = PropertiesHelper.getValue("HEADLESS").equalsIgnoreCase("true");
         Allure.step("Open " + browser + " browser");
         switch (browser) {
             case "chrome":
                 //WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--guest");
                 if (isHeadless) {
-                    chromeOptions.addArguments("--guest");
                     chromeOptions.addArguments("--headless");
                     chromeOptions.addArguments("--window-size=1920,1080");
                 }
-                chromeOptions.addArguments("--guest");
                 driver = new ChromeDriver(chromeOptions);
                 break;
             case "firefox":
@@ -68,7 +66,13 @@ public class BaseTest {
                 driver = new EdgeDriver(edgeOptions);
                 break;
             default:
-                driver = new ChromeDriver(); // mặc định Chrome
+                ChromeOptions defaultChromeOptions = new ChromeOptions();
+                defaultChromeOptions.addArguments("--guest");
+                if (isHeadless) {
+                    defaultChromeOptions.addArguments("--headless");
+                    defaultChromeOptions.addArguments("--window-size=1920,1080");
+                }
+                driver = new ChromeDriver(defaultChromeOptions); // mặc định Chrome
         }
         DriverManager.setDriver(driver);
         if (!isHeadless) {
