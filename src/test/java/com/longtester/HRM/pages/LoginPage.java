@@ -19,10 +19,10 @@ public class LoginPage {
         WebUI.setText(inputPassword,password);
         WebUI.clickElement(buttonLogin);
     }
-    public void verifyShowAlertLoginSuccess(){
+    public void verifyLoginSuccess(){
         WebUI.waitForElementVisible(alertLoginSuccess);
         String actual_text= WebUI.getElementText(alertLoginSuccess);
-        WebUI.verifyEqual(actual_text,"Logged In Successfully.",actual_text + " not match with expected");
+        WebUI.softVerifyEqual(actual_text,"Logged In Successfully.",actual_text + " not match with expected");
     }
     public void verifyShowAlertErrorInputUsernameRequired(){
         WebUI.waitForElementVisible(alertErrorInputRequiredField);

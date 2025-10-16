@@ -34,6 +34,7 @@ public class TaskPage {
     // Status task
     By totalTasksNotStarted = By.xpath("//span[normalize-space()='Not Started']/ancestor::div/h2");
     //Common
+    By alertSuccess = By.xpath("//div[contains(@class,'toast-success')]");
     By inputSearch = By.xpath("//input[@type='search' and @aria-controls='xin_table']");
     By buttonViewDetail = By.xpath("//button/parent::a[contains(@href,'task-detail')]");
     By buttonDeleteTask = By.xpath("//button/parent::span[@data-original-title='Delete']");
@@ -151,8 +152,7 @@ public class TaskPage {
         int expect_TotalTaskNotStarted = TotalTaskNotStartedBefore + 1;
         WebUI.softVerifyEqual(getTotalTasksNotStarted(), expect_TotalTaskNotStarted, "Total task notstarted not match with expected");
         searchTitle(titleTask);
-        String actual_titleTask = WebUI.getElementText(By.xpath("//table[@id='xin_table']/tbody//td[1]"));
-        WebUI.softVerifyEqual(actual_titleTask, titleTask, "Title task in table not match with expected");
+        WebUI.verifyDisplay(By.xpath("//table[@id='xin_table']//td[1][normalize-space()='" + titleTask + "']"), WebUI.isElementDisplayed(By.xpath("//table[@id='xin_table']//td[1][normalize-space()='" + titleTask + "']")), "Task not found in table");
         clickViewDetail();
         WebUI.softVerifyEqual(WebUI.getElementText(textTitle), titleTask, "Title task not match with expected");
         WebUI.softVerifyEqual(WebUI.getElementText(textStartDate).trim(), startDateTask, "Start date task not match with expected");
@@ -160,6 +160,14 @@ public class TaskPage {
         WebUI.softVerifyEqual(WebUI.getElementText(textProject).trim(), project, "Project task not match with expected");
         WebUI.softVerifyEqual(WebUI.getElementText(textSummary).replace("Summary", "").trim(), summary, "Summary task not match with expected");
         WebUI.assertAll();
+    }
+
+    public void verifyNewTaskDisplayedInTable(String titleTask) {
+        WebUI.waitForElementVisible(alertSuccess);
+        String actual_text = WebUI.getElementText(alertSuccess);
+        WebUI.softVerifyEqual(actual_text, "Task added.", actual_text + " not match with expected");
+        searchTitle(titleTask);
+        WebUI.verifyDisplay(By.xpath("//table[@id='xin_table']//td[1][normalize-space()='" + titleTask + "']"), WebUI.isElementDisplayed(By.xpath("//table[@id='xin_table']//td[1][normalize-space()='" + titleTask + "']")), "Task not found in table");
     }
 
     public void verifyTaskNotDisplayedAfterDelete(String titleTask) {
@@ -172,6 +180,4 @@ public class TaskPage {
         WebUI.verifyNotDisplay(list_task, titleTask, titleTask + " still display in table after delete");
         WebUI.assertAll();
     }
-
-
 }

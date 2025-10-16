@@ -20,7 +20,7 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage = new LoginPage();
         BasePage basePage = new BasePage();
         loginPage.loginHRM(username,password);
-        loginPage.verifyShowAlertLoginSuccess();
+        loginPage.verifyLoginSuccess();
         basePage.verifyUserNavigateToHome();
     }
     @Owner("Minh Long")

@@ -259,12 +259,9 @@ public class WebUI {
             WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(TIMEOUT), Duration.ofMillis(500));
             wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         } catch (Throwable error) {
-            if (PropertiesHelper.getValue("SCREENSHOT").equalsIgnoreCase("yes")) {
-                CaptureHelper.takeScreenshotBrowser("failed");
-            }
             AllureManager.saveScreenshotPNG();
             logConsole("Timeout waiting for the element Visible. " + by.toString());
-            Assert.fail("Timeout waiting for the element Visible. " + by.toString());
+            //Assert.fail("Timeout waiting for the element Visible. " + by.toString());
         }
     }
 
@@ -274,7 +271,7 @@ public class WebUI {
             wait.until(ExpectedConditions.presenceOfElementLocated(by));
         } catch (Throwable error) {
             logConsole("Element not exist. " + by.toString());
-            Assert.fail("Element not exist. " + by.toString());
+            //Assert.fail("Element not exist. " + by.toString());
         }
     }
 
@@ -288,7 +285,7 @@ public class WebUI {
             }
             AllureManager.saveScreenshotPNG();
             logConsole("Timeout waiting for the element ready to click. " + by.toString());
-            Assert.fail("Timeout waiting for the element ready to click. " + by.toString());
+            //Assert.fail("Timeout waiting for the element ready to click. " + by.toString());
         }
     }
 

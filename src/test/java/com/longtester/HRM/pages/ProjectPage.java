@@ -226,21 +226,27 @@ public class ProjectPage {
         WebUI.clickElement(buttonAddFile);
     }
 
-    public void verifyAddProjectSuccess(String title, String client, String startDate, String endDate, String summary) {
+    public void verifyAddProjectSuccess(String titleProject, String client, String startDate, String endDate, String summary) {
         int actual_TotalProjectsNotStarted = getTotalProjectsNotStarted();
         WebUI.refreshPage();
         int expect_TotalProjectsNotStarted = actual_TotalProjectsNotStarted + 1;
         WebUI.softVerifyEqual(getTotalProjectsNotStarted(), expect_TotalProjectsNotStarted, "Total project notstarted not match with expected");
-        searchTitle(title);
-        String actual_textTitle = WebUI.getElementText(By.xpath("//table[@id='xin_table']//td[1]"));
-        WebUI.softVerifyEqual(actual_textTitle, title, "Title in table not match with expected");
+        searchTitle(titleProject);
+        WebUI.verifyDisplay(By.xpath("//table[@id='xin_table']//td[1][normalize-space()='" + titleProject + "']"),WebUI.isElementDisplayed(By.xpath("//table[@id='xin_table']//td[1][normalize-space()='" + titleProject + "']")),"Project not found in table");
         clickViewDetail();
-        WebUI.softVerifyEqual(WebUI.getElementText(textTitle), title, "Title not match with expected");
+        WebUI.softVerifyEqual(WebUI.getElementText(textTitle), titleProject, "Title not match with expected");
         WebUI.softVerifyEqual(WebUI.getElementText(textClient), client, "Client not match with expected");
         WebUI.softVerifyEqual(WebUI.getElementText(textStartDate).trim(), startDate, "Start date not match with expected");
         WebUI.softVerifyEqual(WebUI.getElementText(textEndDate).trim(), endDate, "End date not match with expected");
         WebUI.softVerifyEqual(WebUI.getElementText(textSummary).replace("Summary", "").trim(), summary, "Summary not match with expected");
         WebUI.assertAll();
+    }
+    public void verifyNewProjectDisplayedInTable(String titleProject){
+        WebUI.waitForElementVisible(alertSuccess);
+        String actual_text = WebUI.getElementText(alertSuccess);
+        WebUI.softVerifyEqual(actual_text, "Project added.", actual_text + " not match with expected");
+        searchTitle(titleProject);
+        WebUI.verifyDisplay(By.xpath("//table[@id='xin_table']//td[1][normalize-space()='" + titleProject + "']"),WebUI.isElementDisplayed(By.xpath("//table[@id='xin_table']//td[1][normalize-space()='" + titleProject + "']")),"Project not found in table");
     }
 
     public void verifyUploadAttachSuccess(String fileName) {

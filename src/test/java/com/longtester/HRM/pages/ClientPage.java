@@ -26,7 +26,10 @@ public class ClientPage {
     By selectCountry = By.xpath("//label[@for='country']/following::span[contains(@id,'country')]");
     By inputSearchCountry = By.xpath("//input[@type='search' and @role='searchbox']");
     By buttonSubmit = By.xpath("//div[@class='card-body']//button[@type='submit']");
-
+    // Client's task
+    By menuClientTask = By.xpath("//a[@id='user-tasks-tab']");
+    By inputSearchClientTask = By.xpath("//div[@id='user-tasks']//input[@type='search']");
+    // Common
     By alertSuccess = By.xpath("//div[contains(@class,'toast-success')]");
     By inputSearch = By.xpath("//input[@type='search']");
     By buttonViewDetail = By.xpath("//button/parent::a[contains(@href,'view-client')]");
@@ -75,7 +78,12 @@ public class ClientPage {
     private void searchClient(String username) {
         WebUI.waitForElementVisible(inputSearch);
         WebUI.setText(inputSearch, username);
-        WebUI.sleep(2);
+        WebUI.sleep(1);
+    }
+    private void searchClientTask(String clientTask) {
+        WebUI.waitForElementVisible(inputSearchClientTask);
+        WebUI.setText(inputSearchClientTask, clientTask);
+        WebUI.sleep(1);
     }
 
     private void clickViewDetail() {
@@ -91,13 +99,12 @@ public class ClientPage {
     }
 
     public void verifyAddNewClientSuccess(String firstName, String lastName, String contactNumber,
-                                              String gender, String email, String username) {
+                                          String gender, String email, String username) {
         WebUI.waitForElementVisible(alertSuccess);
         String actual_text = WebUI.getElementText(alertSuccess);
         WebUI.softVerifyEqual(actual_text, "Client added.", actual_text + " not match with expected");
         searchClient(username);
-        String actual_textUsername = WebUI.getElementText(By.xpath("//table//td[2]"));
-        WebUI.softVerifyEqual(actual_textUsername, username, "Username in table not match with expected");
+        WebUI.verifyDisplay(By.xpath("//table//td[2][text()='" + username + "']"), WebUI.isElementDisplayed(By.xpath("//table//td[2][text()='" + username + "']")), "Client not found in table");
         clickViewDetail();
         String actual_firtname = WebUI.getElementAttribute(inputFirstName, "value");
         WebUI.softVerifyEqual(actual_firtname, firstName, "First name not match with expected");
@@ -111,8 +118,16 @@ public class ClientPage {
         WebUI.softVerifyEqual(actual_username, username, "Username not match with expected");
         String actual_gender = WebUI.getElementAttribute(selectGender, "title");
         WebUI.softVerifyEqual(actual_gender.trim(), gender, "Gender not match with expected");
-        WebUI.verifyImageUpLoaded(avatarClient,"Avatar client not loaded");
+        WebUI.verifyImageUpLoaded(avatarClient, "Avatar client not loaded");
         WebUI.assertAll();
+    }
+
+    public void verifyNewClientDisplayedInTable(String username) {
+        WebUI.waitForElementVisible(alertSuccess);
+        String actual_text = WebUI.getElementText(alertSuccess);
+        WebUI.softVerifyEqual(actual_text, "Client added.", actual_text + " not match with expected");
+        searchClient(username);
+        WebUI.verifyDisplay(By.xpath("//table//td[2][text()='" + username + "']"), WebUI.isElementDisplayed(By.xpath("//table//td[2][text()='" + username + "']")), "Client not found in table");
     }
 
     public void verifyDetailClientAfterUpdate(String country) {
@@ -129,5 +144,11 @@ public class ClientPage {
         List<WebElement> list_client = WebUI.getWebElements(By.xpath("//table//td[2][normalize-space()='" + username + "']"));
         WebUI.verifyNotDisplay(list_client, username, username + " still display in table after delete");
     }
-
+    public void verifyAdminCanViewTaskCreatedByClient(String client,String clientTask){
+        searchClient(client);
+        clickViewDetail();
+        WebUI.clickElement(menuClientTask);
+        searchClientTask(clientTask);
+        WebUI.verifyDisplay(By.xpath("//table[@id='xin_tasks_table']//td[1][normalize-space()='"+clientTask+"']"),WebUI.isElementDisplayed(By.xpath("//table[@id='xin_tasks_table']//td[1][normalize-space()='"+clientTask+"']")),"Client task not found in table");
+    }
 }

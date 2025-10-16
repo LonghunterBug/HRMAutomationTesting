@@ -6,6 +6,13 @@ import org.testng.annotations.DataProvider;
 public class DataProviderFactory {
     String data_path = "src/test/resources/testdata/HRM.xlsx";
 
+    @DataProvider(name = "data_E2E")
+    public Object[][] dataE2E(){
+        ExcelHelper excelHelper = new ExcelHelper();
+        Object[][] dataE2E = excelHelper.getExcelData(data_path,"E2E");
+        return dataE2E;
+    }
+
     @DataProvider(name = "data_LoginSuccess_registered_account")
     public Object[][] dataLoginSuccess() {
         ExcelHelper excelHelper = new ExcelHelper();

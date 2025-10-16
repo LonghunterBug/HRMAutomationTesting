@@ -28,4 +28,11 @@ public class BasePage {
         String actual_url = WebUI.getCurrentURL();
         WebUI.verifyEqual(actual_url,"https://hrm.anhtester.com/erp/desk","User not navigate to Home");
     }
+    public void clickLogOut(){
+        WebUI.clickElement(buttonLogout);
+    }
+    public void verifyUserNavigateToTask(){
+        String actual_url = WebUI.getCurrentURL();
+        WebUI.verifyEqual(actual_url,"https://hrm.anhtester.com/erp/my-tasks-list","User not navigate to Task");
+    }
 }
