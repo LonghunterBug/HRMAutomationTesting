@@ -9,19 +9,19 @@ import org.testng.*;
 
 import java.io.IOException;
 
-public class TestListener implements ISuiteListener,ITestListener {
+public class TestListener implements IExecutionListener,ITestListener {
     public static int count_totalTCs;
     static int count_passedTCs;
     static int count_skippedTCs;
     static int count_failedTCs;
 
     @Override
-    public void onStart(ISuite arg0) {
+    public void onExecutionStart() {
         LogUtils.info("********** RUN STARTED **********");
     }
 
     @Override
-    public void onFinish(ISuite arg0) {
+    public void onExecutionFinish() {
         LogUtils.info("********** RUN FINISHED **********");
         LogUtils.info("Test Summary:");
         LogUtils.info("📊 Total TCs: " + count_totalTCs);

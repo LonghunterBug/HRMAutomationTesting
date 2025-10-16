@@ -132,6 +132,7 @@
                         <suiteXmlFiles>
                             <!-- Call Suite name -->
                             <suiteXmlFile>src/test/resources/suites/Regression-suite_parallel.xml</suiteXmlFile>
+                            <suiteXmlFile>src/test/resources/suites/E2E-suite.xml</suiteXmlFile>
                         </suiteXmlFiles>
                         <argLine>
                             -Dfile.encoding=UTF-8

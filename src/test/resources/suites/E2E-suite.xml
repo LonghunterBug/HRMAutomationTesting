@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="HRMSuite" verbose="1" >
+    <test name="E2E - Admin can view task created by client">
+        <classes>
+            <class name="com.longtester.HRM.testcases.E2E"/>
+        </classes>
+    </test>
+</suite>
