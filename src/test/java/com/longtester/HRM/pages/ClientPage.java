@@ -133,7 +133,7 @@ public class ClientPage {
     public void verifyDetailClientAfterUpdate(String country) {
         WebUI.refreshPage();
         String actual_country = WebUI.getElementAttribute(selectCountry, "title");
-        WebUI.softVerifyEqual(actual_country.trim(), country, "Country not match with expected");
+        WebUI.softVerifyEqual(actual_country.trim(), country.toUpperCase(), "Country not match with expected");
         WebUI.assertAll();
     }
 

@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class DateHelper {
+    // chuyển chuỗi ngày tháng có định dạng “dd-MM-yyyy” thành đối tượng LocalDate
+    // trả về yyyy-MM-dd
     public static LocalDate parseDate(String date){
         DateTimeFormatter dateformat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return LocalDate.parse(date,dateformat);
