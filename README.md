@@ -36,6 +36,8 @@ The project also uses Excel files to manage test data and .properties files for 
 - **Task**
   - Add new task for project
   - Delete task for project
+- **E2E flow**
+  - Admin view task which is created by client 
 ## ⚙ System requirements
   -  Install [Java JDK](https://www.oracle.com/java/technologies/javase-downloads.html) **>= 17**
   -  Install [IntelliJ IDEA](https://www.jetbrains.com/idea/)
