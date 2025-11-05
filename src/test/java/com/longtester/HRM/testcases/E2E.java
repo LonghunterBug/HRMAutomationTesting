@@ -3,6 +3,7 @@ package com.longtester.HRM.testcases;
 import com.longtester.HRM.pages.*;
 import com.longtester.common.BaseTest;
 import com.longtester.dataprovider.DataProviderFactory;
+import com.longtester.keywords.WebUI;
 import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -44,6 +45,7 @@ public class E2E extends BaseTest {
         loginPage.loginHRM(username_admin,password_admin);
         basePage.clickMenuClient();
         clientPage.verifyAdminCanViewTaskCreatedByClient(client,titleTask);
+        WebUI.assertAll();
     }
 }
 /*

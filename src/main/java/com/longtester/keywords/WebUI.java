@@ -463,10 +463,8 @@ public class WebUI {
         logConsole(stepName);
     }
 
-
     public static void assertAll() {
         SoftAssertHelper.getSoftAssert().assertAll();
-        SoftAssertHelper.resetSoftAssert();
     }
 
 

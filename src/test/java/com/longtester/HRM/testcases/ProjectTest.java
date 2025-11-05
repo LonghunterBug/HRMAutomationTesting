@@ -6,6 +6,7 @@ import com.longtester.HRM.pages.ProjectPage;
 import com.longtester.common.BaseTest;
 import com.longtester.dataprovider.DataProviderFactory;
 import com.longtester.helpers.PropertiesHelper;
+import com.longtester.keywords.WebUI;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
@@ -24,6 +25,7 @@ public class ProjectTest extends BaseTest {
         basePage.clickMenuProject();
         projectPage.addNewProject(title, client, startDate, endDate, summary);
         projectPage.verifyAddProjectSuccess(title, client, startDate, endDate, summary);
+        WebUI.assertAll();
     }
     @Owner("Minh Long")
     @Epic("Project Management")
@@ -40,6 +42,7 @@ public class ProjectTest extends BaseTest {
         projectPage.addNewProject(title, client, startDate, endDate, summary);
         projectPage.editProject(title, update_endDate);
         projectPage.verifyDetailProjectAfterUpdate(update_endDate);
+        WebUI.assertAll();
     }
     @Owner("Minh Long")
     @Epic("Project Management")
@@ -56,6 +59,7 @@ public class ProjectTest extends BaseTest {
         projectPage.addNewProject(title, client, startDate, endDate, summary);
         projectPage.deleteProject(title);
         projectPage.verifyProjectNotDisplayedAfterDelete(title);
+        WebUI.assertAll();
     }
     @Owner("Minh Long")
     @Epic("Project Management")
@@ -72,6 +76,7 @@ public class ProjectTest extends BaseTest {
         projectPage.addNewProject(title, client, startDate, endDate, summary);
         projectPage.editStatus(title, progress, status, priority);
         projectPage.verifyStatusProjectAfterUpdate(status, priority, progress);
+        WebUI.assertAll();
     }
     @Owner("Minh Long")
     @Epic("Project Management")

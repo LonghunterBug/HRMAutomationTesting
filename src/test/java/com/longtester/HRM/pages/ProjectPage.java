@@ -239,7 +239,7 @@ public class ProjectPage {
         WebUI.softVerifyEqual(WebUI.getElementText(textStartDate).trim(), startDate, "Start date not match with expected");
         WebUI.softVerifyEqual(WebUI.getElementText(textEndDate).trim(), endDate, "End date not match with expected");
         WebUI.softVerifyEqual(WebUI.getElementText(textSummary).replace("Summary", "").trim(), summary, "Summary not match with expected");
-        WebUI.assertAll();
+        //WebUI.assertAll();
     }
     public void verifyNewProjectDisplayedInTable(String titleProject){
         WebUI.waitForElementVisible(alertSuccess);
@@ -259,7 +259,6 @@ public class ProjectPage {
     public void verifyDetailProjectAfterUpdate(String update_endDate) {
         WebUI.waitForElementVisible(textEndDate);
         WebUI.softVerifyEqual(WebUI.getElementText(textEndDate).trim(), update_endDate, "End date not match with expected");
-        WebUI.assertAll();
     }
 
     private void handleCompleted() {
@@ -321,7 +320,6 @@ public class ProjectPage {
                 WebUI.logConsole(status + " is not exist");
                 break;
         }
-        WebUI.assertAll();
     }
 
     public void verifyProjectNotDisplayedAfterDelete(String title) {
@@ -332,6 +330,5 @@ public class ProjectPage {
         searchTitle(title);
         List<WebElement> list_project = WebUI.getWebElements(By.xpath("//table//td[1][normalize-space()='" + title + "']"));
         WebUI.verifyNotDisplay(list_project, title, title + " still display in table after delete");
-        WebUI.assertAll();
     }
 }

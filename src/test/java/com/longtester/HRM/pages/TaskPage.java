@@ -159,7 +159,6 @@ public class TaskPage {
         WebUI.softVerifyEqual(WebUI.getElementText(textEndDate).trim(), endDateTask, "End date task not match with expected");
         WebUI.softVerifyEqual(WebUI.getElementText(textProject).trim(), project, "Project task not match with expected");
         WebUI.softVerifyEqual(WebUI.getElementText(textSummary).replace("Summary", "").trim(), summary, "Summary task not match with expected");
-        WebUI.assertAll();
     }
 
     public void verifyNewTaskDisplayedInTable(String titleTask) {
@@ -178,6 +177,5 @@ public class TaskPage {
         searchTitle(titleTask);
         List<WebElement> list_task = WebUI.getWebElements(By.xpath("//table//td[1][normalize-space()='" + titleTask + "']"));
         WebUI.verifyNotDisplay(list_task, titleTask, titleTask + " still display in table after delete");
-        WebUI.assertAll();
     }
 }

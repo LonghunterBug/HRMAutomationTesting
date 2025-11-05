@@ -6,6 +6,7 @@ import com.longtester.HRM.pages.LoginPage;
 import com.longtester.common.BaseTest;
 import com.longtester.dataprovider.DataProviderFactory;
 import com.longtester.helpers.PropertiesHelper;
+import com.longtester.keywords.WebUI;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
@@ -25,6 +26,7 @@ public class ClientTest extends BaseTest {
         basePage.clickMenuClient();
         clientPage.addNewClient(firstName, lastName, password, contactNumber, gender, email, username, filepath);
         clientPage.verifyAddNewClientSuccess(firstName, lastName, contactNumber, gender, email, username);
+        WebUI.assertAll();
     }
     @Owner("Minh Long")
     @Epic("Client Management")
@@ -42,6 +44,7 @@ public class ClientTest extends BaseTest {
         clientPage.addNewClient(firstName, lastName, password, contactNumber, gender, email, username, filepath);
         clientPage.editClient(username,country);// Edit country information
         clientPage.verifyDetailClientAfterUpdate(country);
+        WebUI.assertAll();
     }
     @Owner("Minh Long")
     @Epic("Client Management")

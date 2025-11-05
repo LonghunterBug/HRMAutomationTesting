@@ -4,6 +4,7 @@ import com.longtester.HRM.pages.BasePage;
 import com.longtester.HRM.pages.LoginPage;
 import com.longtester.common.BaseTest;
 import com.longtester.dataprovider.DataProviderFactory;
+import com.longtester.keywords.WebUI;
 import io.qameta.allure.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,7 @@ public class LoginTest extends BaseTest {
         loginPage.loginHRM(username,password);
         loginPage.verifyLoginSuccess();
         basePage.verifyUserNavigateToHome();
+        WebUI.assertAll();
     }
     @Owner("Minh Long")
     @Epic("Login")
@@ -32,6 +34,7 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage = new LoginPage();
         loginPage.loginHRM(username,password);
         loginPage.verifyShowAlertErrorInputUsernameRequired();
+        WebUI.assertAll();
     }
     @Owner("Minh Long")
     @Epic("Login")
@@ -42,6 +45,7 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage = new LoginPage();
         loginPage.loginHRM(username,password);
         loginPage.verifyShowAlertErrorInputPasswordRequired();
+        WebUI.assertAll();
     }
 
 }

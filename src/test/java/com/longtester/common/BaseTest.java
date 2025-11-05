@@ -4,7 +4,6 @@ package com.longtester.common;
 import com.longtester.driver.DriverManager;
 import com.longtester.helpers.PropertiesHelper;
 import com.longtester.helpers.SoftAssertHelper;
-import com.longtester.keywords.WebUI;
 import com.longtester.listeners.TestListener;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Allure;

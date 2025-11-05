@@ -119,7 +119,6 @@ public class ClientPage {
         String actual_gender = WebUI.getElementAttribute(selectGender, "title");
         WebUI.softVerifyEqual(actual_gender.trim(), gender, "Gender not match with expected");
         WebUI.verifyImageUpLoaded(avatarClient, "Avatar client not loaded");
-        WebUI.assertAll();
     }
 
     public void verifyNewClientDisplayedInTable(String username) {
@@ -134,7 +133,6 @@ public class ClientPage {
         WebUI.refreshPage();
         String actual_country = WebUI.getElementAttribute(selectCountry, "title");
         WebUI.softVerifyEqual(actual_country.trim(), country.toUpperCase(), "Country not match with expected");
-        WebUI.assertAll();
     }
 
     public void verifyClientNotDisplayedAfterDelete(String username) {

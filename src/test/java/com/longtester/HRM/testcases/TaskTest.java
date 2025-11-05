@@ -6,6 +6,7 @@ import com.longtester.HRM.pages.TaskPage;
 import com.longtester.common.BaseTest;
 import com.longtester.dataprovider.DataProviderFactory;
 import com.longtester.helpers.PropertiesHelper;
+import com.longtester.keywords.WebUI;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
@@ -24,6 +25,7 @@ public class TaskTest extends BaseTest {
         basePage.clickMenuTask();
         taskPage.addNewTask(titleTask, startDate, endDate, project, summary);
         taskPage.verifyAddTaskSuccess(titleTask, startDate, endDate, project, summary);
+        WebUI.assertAll();
     }
     @Owner("Minh Long")
     @Epic("Task Management")
@@ -40,6 +42,7 @@ public class TaskTest extends BaseTest {
         taskPage.addNewTask(titleTask, startDate, endDate, project, summary);
         taskPage.deleteTask(titleTask);
         taskPage.verifyTaskNotDisplayedAfterDelete(titleTask);
+        WebUI.assertAll();
     }
 
 }
