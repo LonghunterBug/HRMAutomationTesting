@@ -5,7 +5,6 @@ import com.longtester.helpers.DateHelper;
 import com.longtester.helpers.SystemHelper;
 import com.longtester.keywords.WebUI;
 import io.qameta.allure.Allure;
-import org.apache.xmlbeans.impl.xb.xsdschema.All;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
