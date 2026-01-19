@@ -18,9 +18,6 @@ public class TaskTest extends BaseTest {
     @Description("Test add new task function")
     @Test(dataProvider = "data_addNewTask", dataProviderClass = DataProviderFactory.class)
     public void testAddNewTask(String titleTask, String startDate, String endDate,String project, String summary) {
-        LoginPage loginPage = new LoginPage();
-        BasePage basePage = new BasePage();
-        TaskPage taskPage = new TaskPage();
         loginPage.loginHRM(PropertiesHelper.getValue("ADMIN_USERNAME"), PropertiesHelper.getValue("ADMIN_PASSWORD"));
         basePage.clickMenuTask();
         taskPage.addNewTask(titleTask, startDate, endDate, project, summary);
@@ -34,9 +31,6 @@ public class TaskTest extends BaseTest {
     @Description("Test delete task function")
     @Test(dataProvider = "data_deleteTask", dataProviderClass = DataProviderFactory.class)
     public void testDeleteTask(String titleTask, String startDate, String endDate,String project, String summary) {
-        LoginPage loginPage = new LoginPage();
-        BasePage basePage = new BasePage();
-        TaskPage taskPage = new TaskPage();
         loginPage.loginHRM(PropertiesHelper.getValue("ADMIN_USERNAME"), PropertiesHelper.getValue("ADMIN_PASSWORD"));
         basePage.clickMenuTask();
         taskPage.addNewTask(titleTask, startDate, endDate, project, summary);

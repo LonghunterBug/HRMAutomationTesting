@@ -18,8 +18,6 @@ public class LoginTest extends BaseTest {
     @Description("Test login success with valid registered account")
     @Test(dataProvider = "data_LoginSuccess_registered_account",dataProviderClass = DataProviderFactory.class)
     public void testLoginSuccess(String username, String password){
-        LoginPage loginPage = new LoginPage();
-        BasePage basePage = new BasePage();
         loginPage.loginHRM(username,password);
         loginPage.verifyLoginSuccess();
         basePage.verifyUserNavigateToHome();
@@ -31,7 +29,6 @@ public class LoginTest extends BaseTest {
     @Description("Test login fail with invalid username")
     @Test(dataProvider = "data_LoginFail_without_username",dataProviderClass = DataProviderFactory.class)
     public void testLoginFailureWithInvalidUsername(String username, String password){
-        LoginPage loginPage = new LoginPage();
         loginPage.loginHRM(username,password);
         loginPage.verifyShowAlertErrorInputUsernameRequired();
         WebUI.assertAll();
@@ -42,7 +39,6 @@ public class LoginTest extends BaseTest {
     @Description("Test login fail with invalid password")
     @Test(dataProvider = "data_LoginFail_without_password",dataProviderClass = DataProviderFactory.class)
     public void testLoginFailureWithInvalidPassword(String username, String password){
-        LoginPage loginPage = new LoginPage();
         loginPage.loginHRM(username,password);
         loginPage.verifyShowAlertErrorInputPasswordRequired();
         WebUI.assertAll();

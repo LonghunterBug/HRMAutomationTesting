@@ -21,11 +21,6 @@ public class E2E extends BaseTest {
                                            String titleProject, String startdateProject, String endateProject,
                                            String client, String summaryProject, String titleTask, String startdateTask,
                                            String endateTask,String summaryTask) {
-        LoginPage loginPage = new LoginPage();
-        BasePage basePage = new BasePage();
-        ClientPage clientPage = new ClientPage();
-        TaskPage taskPage = new TaskPage();
-        ProjectPage projectPage = new ProjectPage();
         loginPage.loginHRM(username_admin,password_admin);
         basePage.clickMenuClient();
         clientPage.addNewClient(firstname,lastname,password_client,contactnumber,gender,mail,username_client,filepath);

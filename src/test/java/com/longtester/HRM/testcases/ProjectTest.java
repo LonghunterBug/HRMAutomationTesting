@@ -18,9 +18,6 @@ public class ProjectTest extends BaseTest {
     @Description("Test add new project function")
     @Test(dataProvider = "data_AddNewProject", dataProviderClass = DataProviderFactory.class,priority = 2)
     public void testAddNewProject(String title, String client, String startDate, String endDate, String summary) {
-        LoginPage loginPage = new LoginPage();
-        BasePage basePage = new BasePage();
-        ProjectPage projectPage = new ProjectPage();
         loginPage.loginHRM(PropertiesHelper.getValue("ADMIN_USERNAME"), PropertiesHelper.getValue("ADMIN_PASSWORD"));
         basePage.clickMenuProject();
         projectPage.addNewProject(title, client, startDate, endDate, summary);
@@ -34,9 +31,6 @@ public class ProjectTest extends BaseTest {
     @Description("Test edit project function")
     @Test(dataProvider = "data_editProject", dataProviderClass = DataProviderFactory.class,priority = 3)
     public void testEditProject(String title, String client, String startDate, String endDate, String summary, String update_endDate) {
-        LoginPage loginPage = new LoginPage();
-        BasePage basePage = new BasePage();
-        ProjectPage projectPage = new ProjectPage();
         loginPage.loginHRM(PropertiesHelper.getValue("ADMIN_USERNAME"), PropertiesHelper.getValue("ADMIN_PASSWORD"));
         basePage.clickMenuProject();
         projectPage.addNewProject(title, client, startDate, endDate, summary);
@@ -51,9 +45,6 @@ public class ProjectTest extends BaseTest {
     @Description("Test delete project function")
     @Test(dataProvider = "data_deleteProject", dataProviderClass = DataProviderFactory.class,priority = 4)
     public void testDeleteProject(String title, String client, String startDate, String endDate, String summary) {
-        LoginPage loginPage = new LoginPage();
-        BasePage basePage = new BasePage();
-        ProjectPage projectPage = new ProjectPage();
         loginPage.loginHRM(PropertiesHelper.getValue("ADMIN_USERNAME"), PropertiesHelper.getValue("ADMIN_PASSWORD"));
         basePage.clickMenuProject();
         projectPage.addNewProject(title, client, startDate, endDate, summary);
@@ -68,9 +59,6 @@ public class ProjectTest extends BaseTest {
     @Description("Test edit status project function")
     @Test(dataProvider = "data_editStatusProject", dataProviderClass = DataProviderFactory.class,priority = 1)
     public void testEditStatusProject(String title, String client, String startDate, String endDate, String summary, String status, String priority, String progress) {
-        LoginPage loginPage = new LoginPage();
-        BasePage basePage = new BasePage();
-        ProjectPage projectPage = new ProjectPage();
         loginPage.loginHRM(PropertiesHelper.getValue("ADMIN_USERNAME"), PropertiesHelper.getValue("ADMIN_PASSWORD"));
         basePage.clickMenuProject();
         projectPage.addNewProject(title, client, startDate, endDate, summary);
@@ -85,9 +73,6 @@ public class ProjectTest extends BaseTest {
     @Description("Test add attach file function")
     @Test(dataProvider = "data_addAttachFileProject", dataProviderClass = DataProviderFactory.class)
     public void testAddAttachFileProject(String title, String client, String startDate, String endDate, String summary, String filename, String filepath) {
-        LoginPage loginPage = new LoginPage();
-        BasePage basePage = new BasePage();
-        ProjectPage projectPage = new ProjectPage();
         loginPage.loginHRM(PropertiesHelper.getValue("ADMIN_USERNAME"), PropertiesHelper.getValue("ADMIN_PASSWORD"));
         basePage.clickMenuProject();
         projectPage.addNewProject(title,client,startDate,endDate,summary);

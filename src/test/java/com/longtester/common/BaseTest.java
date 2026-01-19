@@ -1,6 +1,7 @@
 package com.longtester.common;
 
 
+import com.longtester.HRM.pages.*;
 import com.longtester.driver.DriverManager;
 import com.longtester.helpers.PropertiesHelper;
 import com.longtester.helpers.SoftAssertHelper;
@@ -22,6 +23,12 @@ import org.testng.annotations.Listeners;
 
 @Listeners(TestListener.class)
 public class BaseTest {
+    protected LoginPage loginPage;
+    protected ProjectPage projectPage;
+    protected TaskPage taskPage;
+    protected ClientPage clientPage;
+    protected BasePage basePage;
+
     @BeforeSuite
     public void runConfig() {
         PropertiesHelper.loadAllFiles();
@@ -29,13 +36,12 @@ public class BaseTest {
 
     @BeforeMethod
     public void openBrowser() {
-        WebDriver driver;// khao báo driver cục bộ
+        WebDriver driver;// khai báo driver cục bộ
         String browser = PropertiesHelper.getValue("BROWSER").trim().toLowerCase();
         boolean isHeadless = PropertiesHelper.getValue("HEADLESS").equalsIgnoreCase("true");
         Allure.step("Open " + browser + " browser");
         switch (browser) {
             case "chrome":
-                //WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--guest");
                 if (isHeadless) {
@@ -45,9 +51,8 @@ public class BaseTest {
                 driver = new ChromeDriver(chromeOptions);
                 break;
             case "firefox":
-                //WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
-                if(isHeadless){
+                if (isHeadless) {
                     firefoxOptions.addArguments("--headless");
                 }
                 driver = new FirefoxDriver(firefoxOptions);
@@ -56,7 +61,6 @@ public class BaseTest {
                 }
                 break;
             case "edge":
-                //WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
                 if (isHeadless) {
                     edgeOptions.addArguments("--headless");
@@ -79,6 +83,13 @@ public class BaseTest {
         }
         // Reset SoftAssert trước mỗi test
         SoftAssertHelper.resetSoftAssert();
+
+        loginPage = new LoginPage();
+        basePage = new BasePage();
+        projectPage = new ProjectPage();
+        taskPage = new TaskPage();
+        clientPage = new ClientPage();
+
     }
 
     @AfterMethod

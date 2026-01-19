@@ -19,9 +19,6 @@ public class ClientTest extends BaseTest {
     @Test(dataProvider = "data_AddNewClient", dataProviderClass = DataProviderFactory.class)
     public void testAddNewClient(String firstName, String lastName, String password, String contactNumber,
                                  String gender, String email, String username, String filepath) {
-        LoginPage loginPage = new LoginPage();
-        BasePage basePage = new BasePage();
-        ClientPage clientPage = new ClientPage();
         loginPage.loginHRM(PropertiesHelper.getValue("ADMIN_USERNAME"), PropertiesHelper.getValue("ADMIN_PASSWORD"));
         basePage.clickMenuClient();
         clientPage.addNewClient(firstName, lastName, password, contactNumber, gender, email, username, filepath);
@@ -36,9 +33,6 @@ public class ClientTest extends BaseTest {
     @Test(dataProvider = "data_editClient", dataProviderClass = DataProviderFactory.class)
     public void testEditClient(String firstName, String lastName, String password, String contactNumber,
                                  String gender, String email, String username, String filepath, String country) {
-        LoginPage loginPage = new LoginPage();
-        BasePage basePage = new BasePage();
-        ClientPage clientPage = new ClientPage();
         loginPage.loginHRM(PropertiesHelper.getValue("ADMIN_USERNAME"), PropertiesHelper.getValue("ADMIN_PASSWORD"));
         basePage.clickMenuClient();
         clientPage.addNewClient(firstName, lastName, password, contactNumber, gender, email, username, filepath);
@@ -54,9 +48,6 @@ public class ClientTest extends BaseTest {
     @Test(dataProvider = "data_DeleteClient", dataProviderClass = DataProviderFactory.class)
     public void testDeleteClient(String firstName, String lastName, String password, String contactNumber,
                                  String gender, String email, String username, String filepath){
-        LoginPage loginPage = new LoginPage();
-        BasePage basePage = new BasePage();
-        ClientPage clientPage = new ClientPage();
         loginPage.loginHRM(PropertiesHelper.getValue("ADMIN_USERNAME"), PropertiesHelper.getValue("ADMIN_PASSWORD"));
         basePage.clickMenuClient();
         clientPage.addNewClient(firstName, lastName, password, contactNumber, gender, email, username, filepath);
