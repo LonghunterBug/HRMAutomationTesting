@@ -1,8 +1,5 @@
 package com.longtester.HRM.testcases;
 
-import com.longtester.HRM.pages.BasePage;
-import com.longtester.HRM.pages.LoginPage;
-import com.longtester.HRM.pages.TaskPage;
 import com.longtester.common.BaseTest;
 import com.longtester.dataprovider.DataProviderFactory;
 import com.longtester.helpers.PropertiesHelper;

@@ -1,6 +1,5 @@
 package com.longtester.HRM.testcases;
 
-import com.longtester.HRM.pages.*;
 import com.longtester.common.BaseTest;
 import com.longtester.dataprovider.DataProviderFactory;
 import com.longtester.keywords.WebUI;
